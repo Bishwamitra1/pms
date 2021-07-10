@@ -14,7 +14,7 @@ public class UserAccount {
     private String username;
     private String firstName;
     private String lastName;
-    private String docName;
+    private Doctor doctor;
     private String friendEmail;
     private String emergEmail;
     private String message;
@@ -75,12 +75,12 @@ public class UserAccount {
         this.lastName = lastName;
     }
 
-    public String getDocName() {
-        return docName;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDocName(String docName) {
-        this.docName = docName;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public String getFriendEmail() {
