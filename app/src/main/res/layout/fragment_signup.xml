@@ -38,6 +38,8 @@
         android:layout_marginTop="100dp"
         android:autofillHints=""
         android:maxLines="1"
+        android:inputType="textPassword"
+        android:maxLength="20"
         android:hint="@string/password" />
 
     <EditText
@@ -48,10 +50,12 @@
         android:layout_marginTop="175dp"
         android:autofillHints=""
         android:maxLines="1"
+        android:inputType="textPassword"
+        android:maxLength="20"
         android:hint="@string/check_password" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/sign_up"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
