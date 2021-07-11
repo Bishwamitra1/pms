@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Personal Health Management System</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="welcome">Welcome to your personalized health management system</string>
 </resources>

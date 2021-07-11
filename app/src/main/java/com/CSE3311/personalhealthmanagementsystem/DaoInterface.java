@@ -1,4 +1,4 @@
-package com.xavierw.personalhealthmanagementsystem;
+package com.CSE3311.personalhealthmanagementsystem;
 
 import androidx.room.Dao;
 import androidx.room.Insert;

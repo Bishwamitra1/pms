@@ -1,4 +1,4 @@
-package com.xavierw.personalhealthmanagementsystem;
+package com.CSE3311.personalhealthmanagementsystem;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -14,7 +14,7 @@ public class UserAccount {
     private String username;
     private String firstName;
     private String lastName;
-    private Doctor doctor;
+    //TODO: create Doctor doctor converter to utlize this class properly
     private String friendEmail;
     private String emergEmail;
     private String message;
@@ -73,14 +73,6 @@ public class UserAccount {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
     }
 
     public String getFriendEmail() {
