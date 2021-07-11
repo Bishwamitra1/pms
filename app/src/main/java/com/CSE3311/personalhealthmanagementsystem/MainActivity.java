@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
             if(savedInstanceState!=null){
                 return;
             }
-            fragmentManager.beginTransaction().add(R.id.fragment_container,new WelcomeFragment()).commit();
+            fragmentManager.beginTransaction().
+            setCustomAnimations( R.anim.fade_in, 0, 0, R.anim.fade_out).
+                    add(R.id.fragment_container,new WelcomeFragment()).commit();
         }
     }
 }
