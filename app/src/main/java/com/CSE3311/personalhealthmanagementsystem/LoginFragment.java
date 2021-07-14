@@ -58,6 +58,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             }
             else{
                 Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
+                MainActivity.fragmentManager.beginTransaction().
+                        setCustomAnimations( R.anim.slide_in_right, 0, 0, R.anim.slide_out_right).
+                        replace(R.id.fragment_container,new HomePageFragment()).
+                        addToBackStack(null).commit();
             }
         }
     }
