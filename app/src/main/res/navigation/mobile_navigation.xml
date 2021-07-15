@@ -9,13 +9,13 @@
         android:id="@+id/home"
         android:name="com.CSE3311.personalhealthmanagementsystem.navbarui.HealthFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_health" />
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/health"
         android:name="com.CSE3311.personalhealthmanagementsystem.navbarui.HomeFragment"
         android:label="@string/health"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_health" />
 
     <fragment
         android:id="@+id/profile"
