@@ -15,5 +15,17 @@
     <string name="sign_up_screen">Create a new account</string>
     <string name="check_password">input password again</string>
 
+    <string name="profile">Profile</string>
+    <string name="medicine">Medicine</string>
+    <string name="vital_signs">Vital Signs</string>
+    <string name="food">Food/ Nutrition</string>
+    <string name="notes">Notes</string>
+    <string name="exercises">Exercises</string>
+    <string name="contact">Contact</string>
+
+    <string name="view">View</string>
+    <string name="edit">Edit</string>
+    <string name="add">Add</string>
+
 
 </resources>
