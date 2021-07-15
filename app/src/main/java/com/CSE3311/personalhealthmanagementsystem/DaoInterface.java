@@ -24,6 +24,9 @@ public interface DaoInterface {
     @Query("SELECT * FROM user_accounts WHERE username = :userName AND password = :password")
     UserAccount getUser(String userName, String password);
 
+    @Query("SELECT * FROM user_accounts WHERE userID = :userId")
+    UserAccount getUserById(int userId);
+
 
     //USE THIS METHOD WITH EXTREME RISK!!!!1!!!!1
     @Query("DELETE FROM user_accounts")
