@@ -15,7 +15,7 @@
         android:id="@+id/health"
         android:name="com.CSE3311.personalhealthmanagementsystem.navbarui.HomeFragment"
         android:label="@string/health"
-        tools:layout="@layout/fragment_health" />
+        tools:layout="@layout/fragment_heath" />
 
     <fragment
         android:id="@+id/profile"
