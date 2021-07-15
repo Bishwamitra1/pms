@@ -1,4 +1,4 @@
-package com.CSE3311.personalhealthmanagementsystem;
+package com.CSE3311.personalhealthmanagementsystem.loginsignup;
 
 
 import android.os.Bundle;
@@ -12,6 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.CSE3311.personalhealthmanagementsystem.MainActivity;
+import com.CSE3311.personalhealthmanagementsystem.R;
+import com.CSE3311.personalhealthmanagementsystem.UserAccount;
+
+import java.util.Objects;
 
 
 /**
@@ -45,7 +51,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == buttonBack.getId()){
-            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
             fm.popBackStack ();
         }
         if(v.getId() == buttonSignup.getId()){

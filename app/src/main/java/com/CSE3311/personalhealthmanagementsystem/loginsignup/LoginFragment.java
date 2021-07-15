@@ -1,5 +1,6 @@
-package com.CSE3311.personalhealthmanagementsystem;
+package com.CSE3311.personalhealthmanagementsystem.loginsignup;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,8 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.CSE3311.personalhealthmanagementsystem.Home_Page;
+import com.CSE3311.personalhealthmanagementsystem.MainActivity;
+import com.CSE3311.personalhealthmanagementsystem.R;
+
 import java.net.UnknownServiceException;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.Single;
 
@@ -49,7 +55,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == buttonBack.getId()){
-            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
             fm.popBackStack ();
         }
         if (v.getId() == buttonLogin.getId()){
@@ -58,10 +64,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             }
             else{
                 Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                MainActivity.fragmentManager.beginTransaction().
-                        setCustomAnimations( R.anim.slide_in_right, 0, 0, R.anim.slide_out_right).
-                        replace(R.id.fragment_container,new HomePageFragment()).
-                        addToBackStack(null).commit();
+                Intent intent = new Intent(getActivity(), Home_Page.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                Objects.requireNonNull(getActivity()).finish();
+                // MainActivity.fragmentManager.beginTransaction().
+                //        replace(R.id.fragment_container,new HomePageFragment()).commit();
             }
         }
     }

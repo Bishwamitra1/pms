@@ -6,6 +6,8 @@ import androidx.room.Room;
 
 import android.os.Bundle;
 
+import com.CSE3311.personalhealthmanagementsystem.loginsignup.WelcomeFragment;
+
 public class MainActivity extends AppCompatActivity {
     public static FragmentManager fragmentManager;
     public static PHMSDatabase localDB;
