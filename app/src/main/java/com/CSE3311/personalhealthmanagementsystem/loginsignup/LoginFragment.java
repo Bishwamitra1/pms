@@ -61,6 +61,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), HomePageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra(
+                        "userID",
+                        ((MainActivity.localDB.daointerface().getUser(editUsername.getText().toString(),editPassword.getText().toString())).getUserID())
+                );
                 startActivity(intent);
                 Objects.requireNonNull(getActivity()).finish();
                 // MainActivity.fragmentManager.beginTransaction().
