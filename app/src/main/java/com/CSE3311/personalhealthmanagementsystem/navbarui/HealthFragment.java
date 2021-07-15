@@ -1,4 +1,4 @@
-package com.CSE3311.personalhealthmanagementsystem.ui;
+package com.CSE3311.personalhealthmanagementsystem.navbarui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment;
 
 import com.CSE3311.personalhealthmanagementsystem.R;
 
-public class ProfileFragment extends Fragment {
+public class HealthFragment extends Fragment {
 
-    public ProfileFragment() {
+    public HealthFragment() {
         // Required empty public constructor
     }
 
@@ -19,7 +19,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        View v = inflater.inflate(R.layout.fragment_health, container, false);
         return v;
     }
 }

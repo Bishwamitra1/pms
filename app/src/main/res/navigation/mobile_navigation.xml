@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.CSE3311.personalhealthmanagementsystem.ui.HealthFragment"
+        android:name="com.CSE3311.personalhealthmanagementsystem.navbarui.HealthFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_health" />
 
     <fragment
         android:id="@+id/health"
-        android:name="com.CSE3311.personalhealthmanagementsystem.ui.HomeFragment"
+        android:name="com.CSE3311.personalhealthmanagementsystem.navbarui.HomeFragment"
         android:label="@string/health"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/profile"
-        android:name="com.CSE3311.personalhealthmanagementsystem.ui.ProfileFragment"
+        android:name="com.CSE3311.personalhealthmanagementsystem.navbarui.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

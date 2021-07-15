@@ -1,4 +1,4 @@
-package com.CSE3311.personalhealthmanagementsystem.ui;
+package com.CSE3311.personalhealthmanagementsystem.navbarui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

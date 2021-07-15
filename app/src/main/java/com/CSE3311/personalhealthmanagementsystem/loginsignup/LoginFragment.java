@@ -11,18 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.CSE3311.personalhealthmanagementsystem.Home_Page;
+import com.CSE3311.personalhealthmanagementsystem.HomePageActivity;
 import com.CSE3311.personalhealthmanagementsystem.MainActivity;
 import com.CSE3311.personalhealthmanagementsystem.R;
 
-import java.net.UnknownServiceException;
-import java.util.List;
 import java.util.Objects;
-
-import io.reactivex.Single;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
@@ -64,7 +59,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             }
             else{
                 Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), Home_Page.class);
+                Intent intent = new Intent(getActivity(), HomePageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 Objects.requireNonNull(getActivity()).finish();
