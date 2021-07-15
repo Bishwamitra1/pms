@@ -19,16 +19,16 @@ public class HealthFragment extends Fragment {
     public HealthFragment() {
         // Required empty public constructor
     }
-    private TextView txtv;
+    // private TextView txtv;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_health, container, false);
 
-        txtv = v.findViewById(R.id.healthText);
-        String toText = String.valueOf(UserID);
-        txtv.setText("The current user's id is " + toText +"\nThe current users username is " + localDB.daointerface().getUserById(UserID).getUsername());
+       // txtv = v.findViewById(R.id.healthText);
+       // String toText = String.valueOf(UserID);
+       // txtv.setText("The current user's id is " + toText +"\nThe current users username is " + localDB.daointerface().getUserById(UserID).getUsername());
         return v;
     }
 }
