@@ -5,17 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.CSE3311.personalhealthmanagementsystem.HomePageActivity;
 import com.CSE3311.personalhealthmanagementsystem.R;
-import com.CSE3311.personalhealthmanagementsystem.loginsignup.LoginFragment;
-
-import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.UserID;
-import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localDB;
+import com.CSE3311.personalhealthmanagementsystem.navbarui.notes.NotesFragment;
 
 public class HealthFragment extends Fragment implements View.OnClickListener {
 
