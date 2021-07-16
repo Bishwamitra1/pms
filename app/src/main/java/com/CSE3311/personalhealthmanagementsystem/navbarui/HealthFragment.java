@@ -4,31 +4,43 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.CSE3311.personalhealthmanagementsystem.HomePageActivity;
 import com.CSE3311.personalhealthmanagementsystem.R;
+import com.CSE3311.personalhealthmanagementsystem.loginsignup.LoginFragment;
 
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.UserID;
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localDB;
 
-public class HealthFragment extends Fragment {
+public class HealthFragment extends Fragment implements View.OnClickListener {
 
     public HealthFragment() {
         // Required empty public constructor
     }
-    // private TextView txtv;
+     private Button viewNotes;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_health, container, false);
 
-       // txtv = v.findViewById(R.id.healthText);
-       // String toText = String.valueOf(UserID);
-       // txtv.setText("The current user's id is " + toText +"\nThe current users username is " + localDB.daointerface().getUserById(UserID).getUsername());
+
+        viewNotes=v.findViewById(R.id.view_notes);
+        viewNotes.setOnClickListener(this);
+
         return v;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == viewNotes.getId()){
+            final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment, new NotesFragment()).addToBackStack(null);
+            ft.commit();
+        }
     }
 }

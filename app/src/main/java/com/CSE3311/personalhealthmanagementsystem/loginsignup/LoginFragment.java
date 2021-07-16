@@ -63,7 +63,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra(
                         "userID",
-                        ((MainActivity.localDB.daointerface().getUser(editUsername.getText().toString(),editPassword.getText().toString())).getUserID())
+                        ((MainActivity.localDB.daointerface().getUser(editUsername.getText().toString(),editPassword.getText().toString())).getUserId())
                 );
                 startActivity(intent);
                 Objects.requireNonNull(getActivity()).finish();

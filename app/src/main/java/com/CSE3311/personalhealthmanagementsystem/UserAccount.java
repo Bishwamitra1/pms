@@ -7,32 +7,29 @@ import androidx.room.PrimaryKey;
 public class UserAccount {
 
     @PrimaryKey(autoGenerate = true)
-    private int userID;
+    private int userId;
 
     private String email;
     private String password;
     private String username;
     private String firstName;
     private String lastName;
-    //TODO: create Doctor doctor converter to utlize this class properly
     private String friendEmail;
     private String emergEmail;
     private String message;
     private String warningMessage;
-
     private int age;
     private int gender;
     private double weight;
     private int height;
     private int pin;
 
-
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,12 +16,15 @@ import androidx.room.Room;
 public class HomePageActivity extends AppCompatActivity {
     public static PHMSDatabase localDB;
     public static int UserID;
+    public static FragmentManager fragmentManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent mIntent = getIntent();
         UserID = mIntent.getIntExtra("userID", 0);
         localDB = Room.databaseBuilder(getApplicationContext(),PHMSDatabase.class, "userDB").allowMainThreadQueries().build();
+        fragmentManager = getSupportFragmentManager();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
