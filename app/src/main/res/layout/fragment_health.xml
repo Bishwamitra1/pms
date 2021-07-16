@@ -25,6 +25,7 @@
         android:weightSum="2">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/medButton"
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_marginRight="6dp"
@@ -54,6 +55,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/vitalSignsButton"
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_marginLeft="6dp"
@@ -92,6 +94,7 @@
         android:weightSum="2">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/nutritionButton"
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_marginRight="6dp"
@@ -121,6 +124,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/notesButton"
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_marginLeft="6dp"
@@ -159,6 +163,7 @@
         android:weightSum="2">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/exercisesButton"
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_marginRight="6dp"
@@ -188,6 +193,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/contactButton"
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_marginLeft="6dp"
