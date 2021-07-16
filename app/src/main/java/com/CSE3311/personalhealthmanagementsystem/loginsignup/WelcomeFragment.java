@@ -1,13 +1,12 @@
 package com.CSE3311.personalhealthmanagementsystem.loginsignup;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
 
 import com.CSE3311.personalhealthmanagementsystem.MainActivity;
 import com.CSE3311.personalhealthmanagementsystem.R;

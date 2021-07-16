@@ -12,30 +12,30 @@ import androidx.fragment.app.FragmentTransaction;
 import com.CSE3311.personalhealthmanagementsystem.R;
 import com.CSE3311.personalhealthmanagementsystem.navbarui.notes.NotesFragment;
 
-public class HealthFragment extends Fragment implements View.OnClickListener {
+public class HealthFragment extends Fragment {
 
     public HealthFragment() {
         // Required empty public constructor
     }
-     private Button viewNotes;
+     //private Button viewNotes;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_health, container, false);
 
 
-        viewNotes=v.findViewById(R.id.view_notes);
-        viewNotes.setOnClickListener(this);
+//        viewNotes=v.findViewById(R.id.view_notes);
+//        viewNotes.setOnClickListener(this);
 
         return v;
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v.getId() == viewNotes.getId()){
-            final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-            ft.replace(R.id.nav_host_fragment, new NotesFragment()).addToBackStack(null);
-            ft.commit();
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        if(v.getId() == viewNotes.getId()){
+//            final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+//            ft.replace(R.id.nav_host_fragment, new NotesFragment()).addToBackStack(null);
+//            ft.commit();
+//        }
+//    }
 }
