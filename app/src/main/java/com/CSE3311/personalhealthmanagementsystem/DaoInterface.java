@@ -21,7 +21,7 @@ public interface DaoInterface {
     @Insert
     void addDoctor(Doctor doctor);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addNote(Note note);
 
     @Query("SELECT * FROM user_accounts WHERE username = :userName AND password = :password")
@@ -36,6 +36,6 @@ public interface DaoInterface {
 
     //USE THIS METHOD WITH EXTREME RISK!!!!1!!!!1
     @Query("DELETE FROM user_accounts")
-    public void nukeTable();
+    void nukeTable();
 
 }
