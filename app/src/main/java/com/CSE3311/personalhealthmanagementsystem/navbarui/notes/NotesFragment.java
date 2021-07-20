@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localD
 
 import com.CSE3311.personalhealthmanagementsystem.Note;
 import com.CSE3311.personalhealthmanagementsystem.R;
+import com.CSE3311.personalhealthmanagementsystem.navbarui.HealthFragment;
 
 import java.util.List;
 
@@ -33,6 +35,16 @@ public class NotesFragment extends Fragment implements RVAdapter.OnItemClicked, 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDataset = localDB.daointerface().getNotesById(UserID);
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(R.id.nav_host_fragment, new HealthFragment()).addToBackStack(null);
+                ft.commit();
+            }
+        };requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+
     }
 
     @Override
