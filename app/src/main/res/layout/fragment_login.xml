@@ -5,11 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".loginsignup.LoginFragment">
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,9 +21,10 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:autofillHints=""
         android:maxLines="1"
-        android:hint="@string/username" />
+        android:hint="@string/username"
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/password"
@@ -36,11 +32,11 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="175dp"
-        android:autofillHints=""
         android:maxLines="1"
         android:inputType="textPassword"
         android:maxLength="20"
-        android:hint="@string/password" />
+        android:hint="@string/password"
+        android:importantForAutofill="no"/>
 
     <Button
         android:id="@+id/log_in_button"

@@ -21,7 +21,6 @@ import java.util.Objects;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
-    private Button buttonBack;
     private Button buttonLogin;
     private EditText editUsername;
     private EditText editPassword;
@@ -39,9 +38,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         editUsername = v.findViewById(R.id.username);
         editPassword = v.findViewById(R.id.password);
 
-        buttonBack = v.findViewById(R.id.back);
-        buttonBack.setOnClickListener(this);
-
         buttonLogin = v.findViewById(R.id.log_in_button);
         buttonLogin.setOnClickListener(this);
         return v;
@@ -49,10 +45,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == buttonBack.getId()){
-            FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-            fm.popBackStack ();
-        }
         if (v.getId() == buttonLogin.getId()){
             if(MainActivity.localDB.daointerface().getUser(editUsername.getText().toString(), editPassword.getText().toString()) == null) {
                 Toast.makeText(getContext(), "Username or password incorrect", Toast.LENGTH_SHORT).show();
@@ -66,7 +58,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         ((MainActivity.localDB.daointerface().getUser(editUsername.getText().toString(),editPassword.getText().toString())).getUserId())
                 );
                 startActivity(intent);
-                Objects.requireNonNull(getActivity()).finish();
+                requireActivity().finish();
                 // MainActivity.fragmentManager.beginTransaction().
                 //        replace(R.id.fragment_container,new HomePageFragment()).commit();
             }

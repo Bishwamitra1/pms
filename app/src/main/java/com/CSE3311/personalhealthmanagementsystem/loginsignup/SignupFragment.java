@@ -25,7 +25,7 @@ import java.util.Objects;
  */
 public class SignupFragment extends Fragment implements View.OnClickListener {
 
-    private Button buttonBack, buttonSignup;
+    private Button buttonSignup;
     private EditText editUsername, editPassword, editPasswordCheck;
 
     public SignupFragment() {
@@ -37,9 +37,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_signup, container, false);
-        buttonBack = v.findViewById(R.id.back);
-        buttonBack.setOnClickListener(this);
-
         buttonSignup = v.findViewById(R.id.sign_up);
         buttonSignup.setOnClickListener(this);
         editUsername = v.findViewById(R.id.username);
@@ -50,10 +47,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == buttonBack.getId()){
-            FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-            fm.popBackStack ();
-        }
         if(v.getId() == buttonSignup.getId()){
             String username = editUsername.getText().toString();
             String password = editPassword.getText().toString();
@@ -68,8 +61,11 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
                 user.setUsername(username);
                 user.setPassword(password);
 
-                MainActivity.localDB.daointerface().addUser(user);
-                Toast.makeText(getContext(),"User created", Toast.LENGTH_SHORT).show();
+                MainActivity.fragmentManager.beginTransaction().
+                        setCustomAnimations( R.anim.slide_in_right, 0, 0, R.anim.slide_out_right).
+                        replace(R.id.fragment_container,new CompleteSignupFragment(user)).
+                        addToBackStack(null).commit();
+
 
             }
         }
