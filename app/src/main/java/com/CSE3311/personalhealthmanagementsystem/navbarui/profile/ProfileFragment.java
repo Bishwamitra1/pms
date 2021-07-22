@@ -9,10 +9,9 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
-import com.CSE3311.personalhealthmanagementsystem.HomePageActivity;
 import com.CSE3311.personalhealthmanagementsystem.MainActivity;
 import com.CSE3311.personalhealthmanagementsystem.R;
-import com.CSE3311.personalhealthmanagementsystem.loginsignup.SaveSharedPreference;
+//import com.CSE3311.personalhealthmanagementsystem.loginsignup.SaveSharedPreference;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
@@ -43,7 +42,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         if(v == logout){
-            SaveSharedPreference.nullifyUserId(getActivity());
+            //SaveSharedPreference.nullifyUserId(getActivity());
 
             Intent intent = new Intent(getActivity(), MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
