@@ -44,12 +44,8 @@
     <string name="height_in_inches">Height in inches</string>
     <string name="continue_signup">You\'re almost done!</string>
     <string name="finish">Finish!</string>
-    <string name="title_activity_add_med">AddMedActivity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
+    <string name="pin">Pin</string>
+    <string name="enter_your_pin_to_continue">Enter Your Pin to Continue</string>
 
 
 </resources>

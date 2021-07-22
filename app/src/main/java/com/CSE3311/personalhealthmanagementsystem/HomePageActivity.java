@@ -1,7 +1,12 @@
 package com.CSE3311.personalhealthmanagementsystem;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
+import android.widget.EditText;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,17 +20,19 @@ import androidx.room.Room;
 
 public class HomePageActivity extends AppCompatActivity {
     public static PHMSDatabase localDB;
-    public static int UserID;
+    public static int userId;
     public static FragmentManager fragmentManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent mIntent = getIntent();
-        UserID = mIntent.getIntExtra("userID", 0);
+        userId = mIntent.getIntExtra("userID", 0);
         localDB = Room.databaseBuilder(getApplicationContext(),PHMSDatabase.class, "userDB").allowMainThreadQueries().build();
         fragmentManager = getSupportFragmentManager();
 
+        if(doesUserHavePin(localDB.daointerface().getUserById(userId)))
+            setPin(localDB.daointerface().getUserById(userId));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         BottomNavigationView navView = findViewById(R.id.navigationView);
@@ -37,6 +44,34 @@ public class HomePageActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    private void setPin(final UserAccount user) {
+        final EditText pinInput = new EditText(this);
+        pinInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Set Pin")
+                .setMessage("Please set your pin")
+                .setView(pinInput)
+                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int editTextInput = Integer.parseInt(pinInput.getText().toString());
+                        user.setPin(editTextInput);
+                        localDB.daointerface().addUser(user);
+                    }
+                })
+                .create();
+        dialog.show();
+    }
+
+    Boolean doesUserHavePin(UserAccount user){
+        if(user.getPin() != 0){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
 }

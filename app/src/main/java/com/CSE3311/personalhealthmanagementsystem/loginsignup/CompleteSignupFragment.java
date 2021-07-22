@@ -78,13 +78,12 @@ public class CompleteSignupFragment extends Fragment implements View.OnClickList
 
         MainActivity.localDB.daointerface().addUser(curUser);
         Toast.makeText(getContext(),"User created", Toast.LENGTH_SHORT).show();
-
+        int userId = ((MainActivity.localDB.daointerface().getUser(curUser.getUsername(), curUser.getPassword())).getUserId());
+        Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), HomePageActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra(
-                "userID",
-                ((MainActivity.localDB.daointerface().getUser(curUser.getUsername(), curUser.getPassword())).getUserId())
-        );
+        intent.putExtra("userID", userId);
+        SaveSharedPreference.setUserId(this.getContext(),userId);
         startActivity(intent);
         requireActivity().finish();
 

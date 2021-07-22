@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.CSE3311.personalhealthmanagementsystem.R;
 
-import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.UserID;
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localDB;
 
 public class HomeFragment extends Fragment {
@@ -28,8 +28,8 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         txtv = v.findViewById(R.id.healthText);
-        String toText = String.valueOf(UserID);
-        txtv.setText("The current user's id is " + toText +"\nThe current users username is " + localDB.daointerface().getUserById(UserID).getUsername());
+        String toText = String.valueOf(userId);
+        txtv.setText("The current user's id is " + toText +"\nThe current users username is " + localDB.daointerface().getUserById(userId).getUsername());
         return v;
     }
 }

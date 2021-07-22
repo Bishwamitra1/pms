@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.UserID;
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localDB;
 
 import com.CSE3311.personalhealthmanagementsystem.Note;
@@ -34,7 +34,7 @@ public class NotesFragment extends Fragment implements RVAdapter.OnItemClicked, 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDataset = localDB.daointerface().getNotesById(UserID);
+        mDataset = localDB.daointerface().getNotesById(userId);
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
@@ -80,7 +80,7 @@ public class NotesFragment extends Fragment implements RVAdapter.OnItemClicked, 
 
         final Note newNote = new Note();
         //The userID is very important!!!!!!!!!!!
-        newNote.setAuthorId(UserID);
+        newNote.setAuthorId(userId);
         newNote.setType("General");
         final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
         Fragment noteview = new NoteViewFragment(newNote);
