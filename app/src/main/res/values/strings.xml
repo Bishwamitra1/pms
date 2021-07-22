@@ -44,6 +44,8 @@
     <string name="height_in_inches">Height in inches</string>
     <string name="continue_signup">You\'re almost done!</string>
     <string name="finish">Finish!</string>
+    <string name="pin">Pin</string>
+    <string name="enter_your_pin_to_continue">Enter Your Pin to Continue</string>
 
 
 </resources>

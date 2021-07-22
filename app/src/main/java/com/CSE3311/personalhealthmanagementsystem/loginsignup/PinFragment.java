@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,40 +16,44 @@ import com.CSE3311.personalhealthmanagementsystem.HomePageActivity;
 import com.CSE3311.personalhealthmanagementsystem.MainActivity;
 import com.CSE3311.personalhealthmanagementsystem.R;
 
-import java.util.Objects;
+import static com.CSE3311.personalhealthmanagementsystem.MainActivity.localDB;
 
-public class LoginFragment extends Fragment implements View.OnClickListener {
 
-    private Button buttonLogin;
-    private EditText editUsername;
-    private EditText editPassword;
+public class PinFragment extends Fragment implements View.OnClickListener {
 
-    public LoginFragment() {
+    public PinFragment() {
         // Required empty public constructor
+    }
+
+    Button logIn;
+    EditText pin;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_login, container, false);
+        View v = inflater.inflate(R.layout.fragment_pin, container, false);
 
-        editUsername = v.findViewById(R.id.username);
-        editPassword = v.findViewById(R.id.password);
+        pin = v.findViewById(R.id.edit_text_pin);
 
-        buttonLogin = v.findViewById(R.id.log_in_button);
-        buttonLogin.setOnClickListener(this);
+        logIn = v.findViewById(R.id.pin_log_in);
+        logIn.setOnClickListener(this);
+
         return v;
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == buttonLogin.getId()){
-            if(MainActivity.localDB.daointerface().getUser(editUsername.getText().toString(), editPassword.getText().toString()) == null) {
-                Toast.makeText(getContext(), "Username or password incorrect", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                int userId = ((MainActivity.localDB.daointerface().getUser(editUsername.getText().toString(),editPassword.getText().toString())).getUserId());
+        if(v == logIn){
+            int userPin = localDB.daointerface().getUserById(SaveSharedPreference.getUserId(getActivity())).getPin();
+            int trialPin = Integer.parseInt(pin.getText().toString());
+            if(userPin == trialPin){
+                int userId = SaveSharedPreference.getUserId(getActivity());
                 Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), HomePageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -58,8 +61,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 SaveSharedPreference.setUserId(this.getContext(),userId);
                 requireActivity().finish();
-                // MainActivity.fragmentManager.beginTransaction().
-                //        replace(R.id.fragment_container,new HomePageFragment()).commit();
+            }
+            else{
+                Toast.makeText(getContext(), "Pin incorrect, please try again", Toast.LENGTH_SHORT).show();
             }
         }
     }
