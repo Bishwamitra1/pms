@@ -40,70 +40,82 @@
                 app:layout_constraintBottom_toBottomOf="@+id/backToMed"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/backToMed" />
+
+            <TextView
+                android:id="@+id/titleMed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/titleMed"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/backToMed" />
+
             <EditText
                 android:id="@+id/inputTitle"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="12dp"
-                android:background="@null"
-                android:hint="@string/medicine"
+                android:layout_height="50dp"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="center_vertical"
+                android:hint="@string/nameOfMedication"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
                 android:inputType="text"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:textColor="@color/colorPrimaryDark"
-                android:textColorHint="@color/colorPrimary"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@+id/backToMed"/>
+                android:textColorHint="@color/hint"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/titleMed"
+                tools:layout_editor_absoluteX="50dp" />
+
             <TextView
-                android:id="@+id/inputSubtitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="12dp"
-                android:background="@null"
-                android:hint="@string/medicine"
-                android:importantForAutofill="no"
-                android:includeFontPadding="false"
-                android:inputType="textMultiLine"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textColorHint="@color/colorPrimary"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/viewMed"
-                app:layout_constraintTop_toBottomOf="@id/inputTitle"/>
-
-            <EditText
-                android:id="@+id/viewMed"
-                android:layout_width="5dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="12dp"
-                app:layout_constraintBottom_toBottomOf="@id/inputSubtitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/inputSubtitle"/>
-
-            <EditText
+                android:id="@+id/titleDosage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@null"
-                android:gravity="top"
-                android:hint="@string/medicine"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/titleDosage"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/inputTitle" />
+
+            <EditText
+                android:id="@+id/inputDosage"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="center_vertical"
+                android:hint="@string/amountOfDosage"
+                android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
-                android:inputType="textMultiLine"
-                android:minHeight="100dp"
-                android:textColor="@color/colorPrimary"
-                android:textColorHint="@color/colorPrimaryDark"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputSubtitle"
-                tools:layout_editor_absoluteX="12dp" />
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/titleDosage"
+                tools:layout_editor_absoluteX="50dp" />
+
+            <TextView
+                android:id="@+id/tv_timer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/editbox_background"
+                android:drawablePadding="16dp"
+                android:gravity="center"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/inputDosage" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

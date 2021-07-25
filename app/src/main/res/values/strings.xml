@@ -47,5 +47,11 @@
     <string name="pin">Pin</string>
     <string name="enter_your_pin_to_continue">Enter Your Pin to Continue</string>
 
+    <string name="nameOfMedication">Enter Name Of Medication</string>
+    <string name="titleMed">Medicine Name</string>
+    <string name="titleDosage">Dosage In Mg</string>
+    <string name="amountOfDosage">Enter Dosage</string>
+
+
 
 </resources>
