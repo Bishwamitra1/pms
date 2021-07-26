@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -29,6 +30,7 @@ public class AddMedFragment extends Fragment {
     }
 
     TextView inputStartTime,inputEndDate;
+    ImageView backToMed;
     int hour, minute;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +39,7 @@ public class AddMedFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_add_med, container, false);
         inputStartTime = v.findViewById(R.id.inputStartTime);
         inputEndDate = v.findViewById(R.id.inputEndDate);
+        backToMed = v.findViewById(R.id.backToMed);
 
         inputStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +98,12 @@ public class AddMedFragment extends Fragment {
             }
         });
 
+        backToMed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager().popBackStackImmediate();
+            }
+        });
 
         return v;
     }
