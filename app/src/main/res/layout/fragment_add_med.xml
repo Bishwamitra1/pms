@@ -74,24 +74,49 @@
                 tools:layout_editor_absoluteX="50dp" />
 
             <TextView
-                android:id="@+id/titleDosage"
+                android:id="@+id/titleType"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/titleType"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputTitle" />
+
+            <Spinner
+                android:id="@+id/spin"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/editbox_background"
+                android:entries="@array/typeOfMed"
+                android:gravity="center|center_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputTitle"></Spinner>
+
+            <TextView
+                android:id="@+id/titleQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/titleDosage"
+                android:text="@string/titleQuantity"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/inputTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/spin" />
 
             <EditText
-                android:id="@+id/inputDosage"
+                android:id="@+id/inputQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:drawable/editbox_background"
                 android:gravity="center_vertical"
-                android:hint="@string/amountOfDosage"
+                android:hint="@string/amountOfQuantity"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
@@ -102,20 +127,37 @@
                 android:textColorHint="@color/hint"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/titleDosage"
+                app:layout_constraintTop_toBottomOf="@+id/titleQuantity"
                 tools:layout_editor_absoluteX="50dp" />
 
             <TextView
-                android:id="@+id/tv_timer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/editbox_background"
-                android:drawablePadding="16dp"
-                android:gravity="center"
-                android:textSize="32sp"
+                android:id="@+id/titleStartTime"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/titleStartTime"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/inputDosage" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputQuantity" />
 
+            <TextView
+                android:id="@+id/inputStartTime"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="center"
+                android:hint="@string/inputStartTime"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputQuantity"></TextView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
