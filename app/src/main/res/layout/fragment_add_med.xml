@@ -75,7 +75,7 @@
 
             <TextView
                 android:id="@+id/titleType"
-                android:layout_width="200dp"
+                android:layout_width="160dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
@@ -88,32 +88,37 @@
                 app:layout_constraintTop_toBottomOf="@+id/inputTitle" />
 
             <Spinner
-                android:id="@+id/spin"
-                android:layout_width="200dp"
+                android:id="@+id/spinType"
+                android:layout_width="240dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
                 android:entries="@array/typeOfMed"
                 android:gravity="center|center_horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inputTitle"></Spinner>
 
             <TextView
                 android:id="@+id/titleQuantity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="@string/titleQuantity"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/spin" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinType" />
 
             <EditText
                 android:id="@+id/inputQuantity"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
                 android:gravity="center_vertical"
                 android:hint="@string/amountOfQuantity"
@@ -127,12 +132,13 @@
                 android:textColorHint="@color/hint"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/titleQuantity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleType"
                 tools:layout_editor_absoluteX="50dp" />
 
             <TextView
                 android:id="@+id/titleStartTime"
-                android:layout_width="200dp"
+                android:layout_width="160dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
@@ -146,7 +152,7 @@
 
             <TextView
                 android:id="@+id/inputStartTime"
-                android:layout_width="200dp"
+                android:layout_width="240dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
@@ -161,23 +167,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/inputQuantity"></TextView>
 
             <TextView
-                android:id="@+id/titleDuration"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/titleDuration"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleStartTime" />
-
-            <TextView
                 android:id="@+id/titleFrequency"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
@@ -185,9 +177,85 @@
                 android:text="@string/titleFrequency"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputStartTime"></TextView>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleStartTime" />
 
+            <TextView
+                android:id="@+id/everyFrequency"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/every"
+                android:textColor="#676161"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/inputFrequency"
+                app:layout_constraintTop_toBottomOf="@+id/inputStartTime" />
+
+            <EditText
+                android:id="@+id/inputFrequency"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="center_horizontal|center_vertical"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/spinFrequency"
+                app:layout_constraintTop_toBottomOf="@+id/inputStartTime" />
+
+            <Spinner
+                android:id="@+id/spinFrequency"
+                android:layout_width="105dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/editbox_background"
+                android:entries="@array/Frequency"
+                android:gravity="center|center_horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputStartTime"></Spinner>
+
+            <TextView
+                android:id="@+id/titleEndDate"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/titleEndDate"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleFrequency" />
+
+            <TextView
+                android:id="@+id/inputEndDate"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="center"
+                android:hint="@string/inputEndDate"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputFrequency"></TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

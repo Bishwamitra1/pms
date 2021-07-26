@@ -55,12 +55,18 @@
         <item>Liquid</item>
         <item>Tablets</item>
     </string-array>
-    <string name="titleQuantity">Medicine Quantity</string>
+    <string name="titleQuantity">Quantity</string>
     <string name="amountOfQuantity">Amount Per Dose</string>
     <string name="titleStartTime">Start Time</string>
     <string name="inputStartTime">Select Time</string>
-    <string name="titleDuration">Duration</string>
     <string name="titleFrequency">Frequency</string>
+    <string-array name="Frequency">
+        <item>Hour(s)</item>
+        <item>Minute(s)</item>
+    </string-array>
+    <string name="every">Every</string>
+    <string name="titleEndDate">End Date</string>
+    <string name="inputEndDate">Select Date</string>
 
 
 
