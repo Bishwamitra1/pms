@@ -56,9 +56,11 @@
         <item>Tablets</item>
     </string-array>
     <string name="titleQuantity">Medicine Quantity</string>
-    <string name="amountOfQuantity">Dosage Per Dose</string>
+    <string name="amountOfQuantity">Amount Per Dose</string>
     <string name="titleStartTime">Start Time</string>
     <string name="inputStartTime">Select Time</string>
+    <string name="titleDuration">Duration</string>
+    <string name="titleFrequency">Frequency</string>
 
 
 
