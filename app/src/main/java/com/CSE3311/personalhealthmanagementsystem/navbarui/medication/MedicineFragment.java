@@ -14,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MedicineFragment extends Fragment implements View.OnClickListener {
 
-
+    //private List<Medication> medications;
     public MedicineFragment() {
         // Required empty public constructor
     }
@@ -22,13 +22,30 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
     private FloatingActionButton addMed_button;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //medications = localDB.daointerface().getMedicationsById(userId);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_medicine, container, false);
         addMed_button = v.findViewById(R.id.addMed_button);
+//        RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
+//
         addMed_button.setOnClickListener(this);
+//
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+//        recyclerView.setLayoutManager(mLayoutManager);
+//
+//        MedicationAdapter adapter = new MedicationAdapter(medications);
+//        recyclerView.setAdapter(adapter);
+
         return v;
+
     }
 
     @Override
