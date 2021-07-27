@@ -69,5 +69,8 @@
     <string name="inputEndDate">Select Date</string>
 
 
+    <string name="today">TODAY</string>
+
+
 
 </resources>

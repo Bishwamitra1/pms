@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
@@ -23,6 +24,7 @@ public class HomeFragment extends Fragment {
     }
     //private TextView txtv;
 
+    Button todayButton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,6 +35,9 @@ public class HomeFragment extends Fragment {
 //        String toText = String.valueOf(userId);
 //        txtv.setText("The current user's id is " + toText +"\nThe current users username is " + localDB.daointerface().getUserById(userId).getUsername());
 
+        todayButton = v.findViewById(R.id.todayButton);
+
+
         //end after 1 month
         Calendar endDate = Calendar.getInstance();
         endDate.add(Calendar.MONTH, 1);
@@ -41,7 +46,7 @@ public class HomeFragment extends Fragment {
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
 
-        HorizontalCalendar horizontalCalendar = new HorizontalCalendar.Builder(v,R.id.calendarView)
+        final HorizontalCalendar horizontalCalendar = new HorizontalCalendar.Builder(v,R.id.calendarView)
                 .startDate(startDate.getTime())
                 .endDate(endDate.getTime())
                 .build();
@@ -50,6 +55,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDateSelected(Date date, int position) {
 
+            }
+        });
+
+        todayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                horizontalCalendar.goToday(true);
             }
         });
         return v;
