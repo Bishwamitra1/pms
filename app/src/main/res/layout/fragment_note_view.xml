@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:text="@string/your_notes"/>
+
     <EditText
+        android:paddingTop="@dimen/activity_vertical_margin"
         android:id="@+id/note_title"
         android:inputType="text"
         android:hint="@string/title"
@@ -13,14 +24,24 @@
         android:paddingHorizontal="@dimen/activity_horizontal_margin"
         android:importantForAutofill="no" />
 
-    <EditText
-        android:id="@+id/note_content"
-        android:inputType="text"
-        android:hint="@string/content"
+    <ScrollView
+        android:id="@+id/myScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/activity_vertical_margin"
-        android:paddingHorizontal="@dimen/activity_horizontal_margin"
-        android:importantForAutofill="no" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="56dp">
 
+            <EditText
+                android:id="@+id/note_content"
+                android:hint="@string/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences|textMultiLine"
+                android:layout_marginTop="1dp"
+                android:paddingVertical="@dimen/activity_vertical_margin"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                android:importantForAutofill="no"
+                android:scrollHorizontally="false"
+                android:background="@null"/>
+    </ScrollView>
 </LinearLayout>

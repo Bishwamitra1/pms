@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
-import devs.mulham.horizontalcalendar.HorizontalCalendarListener;
+import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 public class HomeFragment extends Fragment {
 
@@ -47,13 +47,12 @@ public class HomeFragment extends Fragment {
         startDate.add(Calendar.MONTH, -1);
 
         final HorizontalCalendar horizontalCalendar = new HorizontalCalendar.Builder(v,R.id.calendarView)
-                .startDate(startDate.getTime())
-                .endDate(endDate.getTime())
+                .range(startDate, endDate)
                 .build();
 
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
-            public void onDateSelected(Date date, int position) {
+            public void onDateSelected(Calendar date, int position) {
 
             }
         });

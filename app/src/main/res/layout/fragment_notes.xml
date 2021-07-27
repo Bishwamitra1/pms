@@ -5,11 +5,21 @@
     android:layout_height="match_parent"
     tools:context=".navbarui.notes.NotesFragment">
 
+    <TextView
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:text="@string/your_notes"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="110dp"/>
+        android:layout_marginBottom="126dp"
+        android:layout_marginTop="66dp"/>
     <Button
         android:id = "@+id/new_note"
         android:text="@string/add_new_note"
