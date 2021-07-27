@@ -15,12 +15,16 @@ import android.widget.TimePicker;
 
 import androidx.fragment.app.Fragment;
 
+import com.CSE3311.personalhealthmanagementsystem.Medication;
 import com.CSE3311.personalhealthmanagementsystem.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localDB;
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
 
 public class AddMedFragment extends Fragment {
 
@@ -32,10 +36,12 @@ public class AddMedFragment extends Fragment {
     TextView inputStartTime,inputEndDate;
     ImageView backToMed;
     int hour, minute;
+    Medication newMed;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        newMed = new Medication();
         View v = inflater.inflate(R.layout.fragment_add_med, container, false);
         inputStartTime = v.findViewById(R.id.inputStartTime);
         inputEndDate = v.findViewById(R.id.inputEndDate);
@@ -101,6 +107,9 @@ public class AddMedFragment extends Fragment {
         backToMed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                newMed.setUseMedId(userId);
+                newMed.setNameOfMed("my name");
+                localDB.daointerface().addMedication(newMed);
                 getParentFragmentManager().popBackStackImmediate();
             }
         });

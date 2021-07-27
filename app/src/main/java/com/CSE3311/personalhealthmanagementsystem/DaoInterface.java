@@ -19,8 +19,8 @@ public interface DaoInterface {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addNote(Note note);
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    void addMedication(Medication medication);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void addMedication(Medication medication);
 
     @Query("SELECT * FROM user_accounts WHERE username = :userName AND password = :password")
     UserAccount getUser(String userName, String password);
@@ -31,8 +31,8 @@ public interface DaoInterface {
     @Query("SELECT * FROM note WHERE authorId= :userId")
     List<Note> getNotesById(int userId);
 
-//    @Query("SELECT * FROM medication WHERE useMedId= :userId")
-//    List<Medication> getMedicationsById(int userId);
+    @Query("SELECT * FROM medication WHERE useMedId= :userId")
+    List<Medication> getMedicationsById(int userId);
 
     //USE THIS METHOD WITH EXTREME RISK!!!!1!!!!1
     @Query("DELETE FROM user_accounts")

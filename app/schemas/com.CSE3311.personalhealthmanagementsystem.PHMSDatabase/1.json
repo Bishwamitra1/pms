@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6d18e3dd90a76f2c1f001f6f13b6dfeb",
+    "identityHash": "9d5dbe1853895e93eb5a0170b0366cd5",
     "entities": [
       {
         "tableName": "user_accounts",
@@ -225,12 +225,71 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "Medication",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`medID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `useMedId` INTEGER NOT NULL, `nameOfMed` TEXT, `typeOfMed` TEXT, FOREIGN KEY(`useMedId`) REFERENCES `user_accounts`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "medID",
+            "columnName": "medID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "useMedId",
+            "columnName": "useMedId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameOfMed",
+            "columnName": "nameOfMed",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "typeOfMed",
+            "columnName": "typeOfMed",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "medID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Medication_useMedId",
+            "unique": false,
+            "columnNames": [
+              "useMedId"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Medication_useMedId` ON `${TABLE_NAME}` (`useMedId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "user_accounts",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "useMedId"
+            ],
+            "referencedColumns": [
+              "userId"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6d18e3dd90a76f2c1f001f6f13b6dfeb')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9d5dbe1853895e93eb5a0170b0366cd5')"
     ]
   }
 }
