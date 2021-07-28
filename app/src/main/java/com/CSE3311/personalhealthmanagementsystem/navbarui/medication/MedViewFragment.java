@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.CSE3311.personalhealthmanagementsystem.Medication;
 import com.CSE3311.personalhealthmanagementsystem.R;
@@ -15,7 +16,7 @@ import com.CSE3311.personalhealthmanagementsystem.R;
 public class MedViewFragment extends Fragment {
 
     Medication localMed;
-    ImageView backToMed, editMed;
+    ImageView backToMed, editMed, deleteMed;
     TextView inputNameMed, spinType, inputQuantity, inputStartTime, inputFrequency, inputEndDate;
 
     public MedViewFragment(Medication medication) { localMed = medication; }
@@ -27,6 +28,7 @@ public class MedViewFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_med_view, container, false);
         backToMed = v.findViewById(R.id.backToMed);
         editMed = v.findViewById(R.id.editMed);
+        deleteMed = v.findViewById(R.id.deleteMed);
         inputNameMed = v.findViewById(R.id.displayNameMed);
         spinType = v.findViewById(R.id.displayType);
         inputQuantity = v.findViewById(R.id.displayQuantity);
@@ -48,6 +50,23 @@ public class MedViewFragment extends Fragment {
             }
         });
 
+        editMed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(R.id.nav_host_fragment, new AddMedFragment(localMed)).addToBackStack(null);
+                ft.commit();
+            }
+        });
+
+        deleteMed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager().popBackStackImmediate();
+            }
+        });
+
         return v;
     }
+
 }

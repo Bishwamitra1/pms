@@ -30,10 +30,12 @@ import static com.CSE3311.personalhealthmanagementsystem.MainActivity.localDB;
 
 public class AddMedFragment extends Fragment {
 
-
+    private Medication localMed;
+    private boolean flagIfEdit = false;
     public AddMedFragment() {
         // Required empty public constructor
     }
+    public AddMedFragment(Medication medication) {  localMed = medication;  flagIfEdit = true; }
 
     TextView inputStartTime,inputEndDate;
     ImageView backToMed,saveMed;
@@ -41,13 +43,11 @@ public class AddMedFragment extends Fragment {
     Spinner spinType, spinFrequency;
 
     int hour, minute;
-    Medication newMed;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        newMed = new Medication();
 
         View v = inflater.inflate(R.layout.fragment_add_med, container, false);
         inputStartTime = v.findViewById(R.id.displayStartTime);
@@ -59,6 +59,28 @@ public class AddMedFragment extends Fragment {
         inputFrequency = v.findViewById(R.id.displayFrequency);
         spinType = v.findViewById(R.id.displayType);
         spinFrequency = v.findViewById(R.id.spinFrequency);
+
+        if(flagIfEdit) {
+            int type,frequencyUnit;
+
+            if(localMed.getTypeOfMed().equals("Capsule")) { type = 0;}
+            else if(localMed.getTypeOfMed().equals("Liquid")) { type = 1; }
+            else {  type = 2;}
+
+            if(localMed.isFrequencyUnit()) {    frequencyUnit = 0;}
+            else {  frequencyUnit = 1;}
+
+            inputNameMed.setText(localMed.getNameOfMed());
+            spinType.setSelection(type);
+            inputQuantity.setText(String.valueOf(localMed.getQuantity()));
+            inputStartTime.setText(localMed.getStartTime());
+            inputFrequency.setText(String.valueOf(localMed.getFrequency()));
+            spinFrequency.setSelection(frequencyUnit);
+            inputEndDate.setText(localMed.getEndDate());
+        }
+        else {
+            localMed = new Medication();
+        }
 
         inputStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,15 +149,27 @@ public class AddMedFragment extends Fragment {
         saveMed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                newMed.setUseMedId(userId);
-                newMed.setNameOfMed(inputNameMed.getText().toString());
-                newMed.setTypeOfMed(spinType.getSelectedItem().toString());
-                newMed.setQuantity(Integer.parseInt(inputQuantity.getText().toString()));
-                newMed.setStartTime(inputStartTime.getText().toString());
-                newMed.setFrequency(Integer.parseInt(inputFrequency.getText().toString()));
-                newMed.setFrequencyUnit((spinFrequency.getSelectedItem().toString().equals("Hour(s)")?true:false));
-                newMed.setEndDate(inputEndDate.getText().toString());
-                localDB.daointerface().addMedication(newMed);
+                if(flagIfEdit)
+                {
+                    localMed.setNameOfMed(inputNameMed.getText().toString());
+                    localMed.setTypeOfMed(spinType.getSelectedItem().toString());
+                    localMed.setQuantity(Integer.parseInt(inputQuantity.getText().toString()));
+                    localMed.setStartTime(inputStartTime.getText().toString());
+                    localMed.setFrequency(Integer.parseInt(inputFrequency.getText().toString()));
+                    localMed.setFrequencyUnit((spinFrequency.getSelectedItem().toString().equals("Hour(s)") ? true : false));
+                    localMed.setEndDate(inputEndDate.getText().toString());
+                }
+                else {
+                    localMed.setUseMedId(userId);
+                    localMed.setNameOfMed(inputNameMed.getText().toString());
+                    localMed.setTypeOfMed(spinType.getSelectedItem().toString());
+                    localMed.setQuantity(Integer.parseInt(inputQuantity.getText().toString()));
+                    localMed.setStartTime(inputStartTime.getText().toString());
+                    localMed.setFrequency(Integer.parseInt(inputFrequency.getText().toString()));
+                    localMed.setFrequencyUnit((spinFrequency.getSelectedItem().toString().equals("Hour(s)") ? true : false));
+                    localMed.setEndDate(inputEndDate.getText().toString());
+                }
+                localDB.daointerface().addMedication(localMed);
                 getParentFragmentManager().popBackStackImmediate();
             }
         });

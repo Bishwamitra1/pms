@@ -17,13 +17,16 @@ import java.util.List;
 
 public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.MedicationHolder> {
 
-    //public static int MedPosition;
     private OnClickAction onClickAction;
+    private OnDeleteClickListener onDeleteClickListener;
     List<Medication> medications = new ArrayList<>();
 
 
     public interface OnClickAction {
         void onClickActionMethod(int position);
+    }
+    public interface OnDeleteClickListener {
+        void onDeleteClickListener(Medication medication);
     }
 
     @Override
@@ -36,15 +39,10 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
     @Override
     public void onBindViewHolder(MedicationHolder holder, final int position) {
         Medication currentMed = medications.get(position);
-        //holder.mCardView.setTag(position);
+
         holder.titleMedItem.setText(currentMed.getNameOfMed());
         holder.titleTypeItem.setText(currentMed.getTypeOfMed()+" "+currentMed.getQuantity()+" "+currentMed.getStartTime()+" "+currentMed.getEndDate()+" "+currentMed.getFrequency()+" "+currentMed.isFrequencyUnit());
-//        holder.mCardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                onClickAction.onClickActionMethod(position);
-//            }
-//        });
+
         holder.getmCardView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,4 +79,5 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
     }
 
     public void setOnClickAction(OnClickAction onClickAction) { this.onClickAction = onClickAction; }
+    public void setOnDeleteClickListener(OnDeleteClickListener onDeleteClickListener) { this.onDeleteClickListener = onDeleteClickListener;}
 }

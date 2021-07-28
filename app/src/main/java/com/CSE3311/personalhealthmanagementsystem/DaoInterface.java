@@ -1,6 +1,7 @@
 package com.CSE3311.personalhealthmanagementsystem;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -33,6 +34,9 @@ public interface DaoInterface {
 
     @Query("SELECT * FROM medication WHERE useMedId= :userId")
     List<Medication> getMedicationsById(int userId);
+
+    @Delete
+    void deleteMedication(Medication medication);
 
     //USE THIS METHOD WITH EXTREME RISK!!!!1!!!!1
     @Query("DELETE FROM user_accounts")

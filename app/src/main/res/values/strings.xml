@@ -53,7 +53,7 @@
     <string-array name="typeOfMed">
         <item>Capsule</item>
         <item>Liquid</item>
-        <item>Tablets</item>
+        <item>Tablet</item>
     </string-array>
     <string name="titleQuantity">Quantity</string>
     <string name="amountOfQuantity">Amount Per Dose</string>
