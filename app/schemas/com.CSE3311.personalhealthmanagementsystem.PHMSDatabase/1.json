@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9d5dbe1853895e93eb5a0170b0366cd5",
+    "identityHash": "e453798dd7e1c898e11a2f3bc2d57836",
     "entities": [
       {
         "tableName": "user_accounts",
@@ -228,7 +228,7 @@
       },
       {
         "tableName": "Medication",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`medID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `useMedId` INTEGER NOT NULL, `nameOfMed` TEXT, `typeOfMed` TEXT, FOREIGN KEY(`useMedId`) REFERENCES `user_accounts`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`medID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `useMedId` INTEGER NOT NULL, `nameOfMed` TEXT, `typeOfMed` TEXT, `quantity` INTEGER NOT NULL, `startTime` TEXT, `endDate` TEXT, `frequency` INTEGER NOT NULL, `frequencyUnit` INTEGER NOT NULL, FOREIGN KEY(`useMedId`) REFERENCES `user_accounts`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "medID",
@@ -253,6 +253,36 @@
             "columnName": "typeOfMed",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "quantity",
+            "columnName": "quantity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startTime",
+            "columnName": "startTime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "endDate",
+            "columnName": "endDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frequency",
+            "columnName": "frequency",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "frequencyUnit",
+            "columnName": "frequencyUnit",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -289,7 +319,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9d5dbe1853895e93eb5a0170b0366cd5')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e453798dd7e1c898e11a2f3bc2d57836')"
     ]
   }
 }

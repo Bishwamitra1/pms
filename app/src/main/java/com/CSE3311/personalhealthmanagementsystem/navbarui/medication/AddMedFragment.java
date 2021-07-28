@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -23,8 +25,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localDB;
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
+import static com.CSE3311.personalhealthmanagementsystem.MainActivity.localDB;
 
 public class AddMedFragment extends Fragment {
 
@@ -34,18 +36,29 @@ public class AddMedFragment extends Fragment {
     }
 
     TextView inputStartTime,inputEndDate;
-    ImageView backToMed;
+    ImageView backToMed,saveMed;
+    EditText inputNameMed, inputQuantity, inputFrequency;
+    Spinner spinType, spinFrequency;
+
     int hour, minute;
     Medication newMed;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         newMed = new Medication();
+
         View v = inflater.inflate(R.layout.fragment_add_med, container, false);
         inputStartTime = v.findViewById(R.id.inputStartTime);
         inputEndDate = v.findViewById(R.id.inputEndDate);
         backToMed = v.findViewById(R.id.backToMed);
+        saveMed = v.findViewById(R.id.saveMed);
+        inputNameMed = v.findViewById(R.id.inputNameMed);
+        inputQuantity = v.findViewById(R.id.inputQuantity);
+        inputFrequency = v.findViewById(R.id.inputFrequency);
+        spinType = v.findViewById(R.id.spinType);
+        spinFrequency = v.findViewById(R.id.spinFrequency);
 
         inputStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,8 +120,21 @@ public class AddMedFragment extends Fragment {
         backToMed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getParentFragmentManager().popBackStackImmediate();
+            }
+        });
+
+        saveMed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 newMed.setUseMedId(userId);
-                newMed.setNameOfMed("my name");
+                newMed.setNameOfMed(inputNameMed.getText().toString());
+                newMed.setTypeOfMed(spinType.getSelectedItem().toString());
+                newMed.setQuantity(Integer.parseInt(inputQuantity.getText().toString()));
+                newMed.setStartTime(inputStartTime.getText().toString());
+                newMed.setFrequency(Integer.parseInt(inputFrequency.getText().toString()));
+                newMed.setFrequencyUnit((spinFrequency.getSelectedItem().toString().equals("Hour(s)")?true:false));
+                newMed.setEndDate(inputEndDate.getText().toString());
                 localDB.daointerface().addMedication(newMed);
                 getParentFragmentManager().popBackStackImmediate();
             }

@@ -20,7 +20,7 @@ import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localD
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
 
 
-public class MedicineFragment extends Fragment implements View.OnClickListener {
+public class MedicineFragment extends Fragment implements MedicationAdapter.OnClickAction, View.OnClickListener {
 
     private List<Medication> medications;
     public MedicineFragment() {
@@ -30,17 +30,12 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
     private FloatingActionButton addMed_button;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        medications = localDB.daointerface().getMedicationsById(userId);
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_medicine, container, false);
+        medications = localDB.daointerface().getMedicationsById(userId);
+
         addMed_button = v.findViewById(R.id.addMed_button);
         RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
 
@@ -51,6 +46,8 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
 
         MedicationAdapter adapter = new MedicationAdapter(medications);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnClickAction(this);
 
         return v;
 
@@ -68,7 +65,12 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-
+    public void onClickActionMethod(int position) {
+        final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        //Fragment noteview = new NoteViewFragment(medications.get(position));
+        ft.replace(R.id.nav_host_fragment, new AddMedFragment()).addToBackStack(null);
+        ft.commit();
+    }
 
 
 }
