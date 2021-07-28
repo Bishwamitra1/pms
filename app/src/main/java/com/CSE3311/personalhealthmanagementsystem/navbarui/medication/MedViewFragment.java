@@ -13,11 +13,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.CSE3311.personalhealthmanagementsystem.Medication;
 import com.CSE3311.personalhealthmanagementsystem.R;
 
+import static com.CSE3311.personalhealthmanagementsystem.MainActivity.localDB;
+
 public class MedViewFragment extends Fragment {
 
     Medication localMed;
     ImageView backToMed, editMed, deleteMed;
-    TextView inputNameMed, spinType, inputQuantity, inputStartTime, inputFrequency, inputEndDate;
+    TextView inputNameMed, inputUseFor, spinType, inputQuantity, inputStartTime, inputFrequency, inputEndDate;
 
     public MedViewFragment(Medication medication) { localMed = medication; }
 
@@ -30,6 +32,7 @@ public class MedViewFragment extends Fragment {
         editMed = v.findViewById(R.id.editMed);
         deleteMed = v.findViewById(R.id.deleteMed);
         inputNameMed = v.findViewById(R.id.displayNameMed);
+        inputUseFor = v.findViewById(R.id.displayUseFor);
         spinType = v.findViewById(R.id.displayType);
         inputQuantity = v.findViewById(R.id.displayQuantity);
         inputStartTime = v.findViewById(R.id.displayStartTime);
@@ -37,6 +40,7 @@ public class MedViewFragment extends Fragment {
         inputEndDate = v.findViewById(R.id.displayEndDate);
 
         inputNameMed.setText(localMed.getNameOfMed());
+        inputUseFor.setText(localMed.getDescriptionOfMed());
         spinType.setText(localMed.getTypeOfMed());
         inputQuantity.setText(String.valueOf(localMed.getQuantity()));
         inputStartTime.setText(localMed.getStartTime());
@@ -62,6 +66,7 @@ public class MedViewFragment extends Fragment {
         deleteMed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                localDB.daointerface().deleteMedication(localMed);
                 getParentFragmentManager().popBackStackImmediate();
             }
         });

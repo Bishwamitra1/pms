@@ -19,6 +19,7 @@ class Medication {
     private int useMedId;
 
     private String nameOfMed;
+    private String descriptionOfMed;
     private String typeOfMed;
     private int quantity;
     private String startTime;
@@ -49,6 +50,10 @@ class Medication {
     public void setNameOfMed(String nameOfMed) {
         this.nameOfMed = nameOfMed;
     }
+
+    public String getDescriptionOfMed() { return descriptionOfMed; }
+
+    public void setDescriptionOfMed(String descriptionOfMed) { this.descriptionOfMed = descriptionOfMed; }
 
     public String getTypeOfMed() {
         return typeOfMed;

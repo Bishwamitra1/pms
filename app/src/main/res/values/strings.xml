@@ -49,11 +49,13 @@
 
     <string name="nameOfMedication">Enter Name Of Medication</string>
     <string name="titleMed">Medicine Name</string>
+    <string name="titleUseFor">Description</string>
+    <string name="inputUseFor">Example: pain, allergy,...</string>
     <string name="titleType">Medicine Type</string>
     <string-array name="typeOfMed">
-        <item>Capsule</item>
+        <item>Capsule(s)</item>
         <item>Liquid</item>
-        <item>Tablet</item>
+        <item>Tablet(s)</item>
     </string-array>
     <string name="titleQuantity">Quantity</string>
     <string name="amountOfQuantity">Amount Per Dose</string>

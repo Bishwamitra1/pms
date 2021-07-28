@@ -18,15 +18,11 @@ import java.util.List;
 public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.MedicationHolder> {
 
     private OnClickAction onClickAction;
-    private OnDeleteClickListener onDeleteClickListener;
     List<Medication> medications = new ArrayList<>();
 
 
     public interface OnClickAction {
         void onClickActionMethod(int position);
-    }
-    public interface OnDeleteClickListener {
-        void onDeleteClickListener(Medication medication);
     }
 
     @Override
@@ -41,7 +37,7 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
         Medication currentMed = medications.get(position);
 
         holder.titleMedItem.setText(currentMed.getNameOfMed());
-        holder.titleTypeItem.setText(currentMed.getTypeOfMed()+" "+currentMed.getQuantity()+" "+currentMed.getStartTime()+" "+currentMed.getEndDate()+" "+currentMed.getFrequency()+" "+currentMed.isFrequencyUnit());
+        holder.titleDescriptionItem.setText("Take "+currentMed.getQuantity()+" "+currentMed.getTypeOfMed()+" every "+currentMed.getFrequency()+((currentMed.isFrequencyUnit())?" Hour(s)":" Minute(s)")+" for "+currentMed.getDescriptionOfMed());
 
         holder.getmCardView().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,14 +53,14 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
     }
 
     public static class MedicationHolder extends RecyclerView.ViewHolder {
-        private TextView titleMedItem,titleTypeItem;
+        private TextView titleMedItem, titleDescriptionItem;
         private CardView mCardView;
 
         public MedicationHolder(View itemView) {
             super(itemView);
             mCardView = itemView.findViewById(R.id.cardViewMed);
             titleMedItem = itemView.findViewById(R.id.titleMedItem);
-            titleTypeItem = itemView.findViewById(R.id.titleTypeItem);
+            titleDescriptionItem = itemView.findViewById(R.id.titleDescriptionItem);
 
         }
 
@@ -79,5 +75,4 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
     }
 
     public void setOnClickAction(OnClickAction onClickAction) { this.onClickAction = onClickAction; }
-    public void setOnDeleteClickListener(OnDeleteClickListener onDeleteClickListener) { this.onDeleteClickListener = onDeleteClickListener;}
 }

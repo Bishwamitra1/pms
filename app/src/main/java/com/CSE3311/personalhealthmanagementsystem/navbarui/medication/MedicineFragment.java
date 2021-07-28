@@ -21,7 +21,7 @@ import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localD
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
 
 
-public class MedicineFragment extends Fragment implements MedicationAdapter.OnClickAction, MedicationAdapter.OnDeleteClickListener, View.OnClickListener {
+public class MedicineFragment extends Fragment implements MedicationAdapter.OnClickAction, View.OnClickListener {
 
     private List<Medication> medications;
     public MedicineFragment() {
@@ -58,7 +58,6 @@ public class MedicineFragment extends Fragment implements MedicationAdapter.OnCl
         recyclerView.setAdapter(adapter);
 
         adapter.setOnClickAction(this);
-        adapter.setOnDeleteClickListener(this);
 
         return v;
 
@@ -84,9 +83,4 @@ public class MedicineFragment extends Fragment implements MedicationAdapter.OnCl
         ft.commit();
     }
 
-
-    @Override
-    public void onDeleteClickListener(Medication medication) {
-
-    }
 }

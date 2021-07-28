@@ -86,6 +86,37 @@
                 app:layout_constraintTop_toBottomOf="@+id/editMed" />
 
             <TextView
+                android:id="@+id/titleUseFor"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/titleUseFor"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleMed" />
+
+            <TextView
+                android:id="@+id/displayUseFor"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="center_horizontal|center_vertical"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/displayNameMed" />
+
+            <TextView
                 android:id="@+id/titleType"
                 android:layout_width="160dp"
                 android:layout_height="40dp"
@@ -97,7 +128,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayNameMed" />
+                app:layout_constraintTop_toBottomOf="@+id/titleUseFor" />
 
             <TextView
                 android:id="@+id/displayType"
@@ -114,7 +145,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayNameMed" />
+                app:layout_constraintTop_toBottomOf="@+id/displayUseFor" />
 
             <TextView
                 android:id="@+id/titleQuantity"

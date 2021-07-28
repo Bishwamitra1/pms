@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e453798dd7e1c898e11a2f3bc2d57836",
+    "identityHash": "07fa1ed15512b16c0904313e7b260664",
     "entities": [
       {
         "tableName": "user_accounts",
@@ -228,7 +228,7 @@
       },
       {
         "tableName": "Medication",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`medID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `useMedId` INTEGER NOT NULL, `nameOfMed` TEXT, `typeOfMed` TEXT, `quantity` INTEGER NOT NULL, `startTime` TEXT, `endDate` TEXT, `frequency` INTEGER NOT NULL, `frequencyUnit` INTEGER NOT NULL, FOREIGN KEY(`useMedId`) REFERENCES `user_accounts`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`medID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `useMedId` INTEGER NOT NULL, `nameOfMed` TEXT, `descriptionOfMed` TEXT, `typeOfMed` TEXT, `quantity` INTEGER NOT NULL, `startTime` TEXT, `endDate` TEXT, `frequency` INTEGER NOT NULL, `frequencyUnit` INTEGER NOT NULL, FOREIGN KEY(`useMedId`) REFERENCES `user_accounts`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "medID",
@@ -245,6 +245,12 @@
           {
             "fieldPath": "nameOfMed",
             "columnName": "nameOfMed",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "descriptionOfMed",
+            "columnName": "descriptionOfMed",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -319,7 +325,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e453798dd7e1c898e11a2f3bc2d57836')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '07fa1ed15512b16c0904313e7b260664')"
     ]
   }
 }

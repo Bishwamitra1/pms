@@ -39,7 +39,7 @@ public class AddMedFragment extends Fragment {
 
     TextView inputStartTime,inputEndDate;
     ImageView backToMed,saveMed;
-    EditText inputNameMed, inputQuantity, inputFrequency;
+    EditText inputNameMed, inputUseFor, inputQuantity, inputFrequency;
     Spinner spinType, spinFrequency;
 
     int hour, minute;
@@ -55,6 +55,7 @@ public class AddMedFragment extends Fragment {
         backToMed = v.findViewById(R.id.backToMed);
         saveMed = v.findViewById(R.id.editMed);
         inputNameMed = v.findViewById(R.id.displayNameMed);
+        inputUseFor = v.findViewById(R.id.displayUseFor);
         inputQuantity = v.findViewById(R.id.displayQuantity);
         inputFrequency = v.findViewById(R.id.displayFrequency);
         spinType = v.findViewById(R.id.displayType);
@@ -63,7 +64,7 @@ public class AddMedFragment extends Fragment {
         if(flagIfEdit) {
             int type,frequencyUnit;
 
-            if(localMed.getTypeOfMed().equals("Capsule")) { type = 0;}
+            if(localMed.getTypeOfMed().equals("Capsule(s)")) { type = 0;}
             else if(localMed.getTypeOfMed().equals("Liquid")) { type = 1; }
             else {  type = 2;}
 
@@ -71,6 +72,7 @@ public class AddMedFragment extends Fragment {
             else {  frequencyUnit = 1;}
 
             inputNameMed.setText(localMed.getNameOfMed());
+            inputUseFor.setText(localMed.getDescriptionOfMed());
             spinType.setSelection(type);
             inputQuantity.setText(String.valueOf(localMed.getQuantity()));
             inputStartTime.setText(localMed.getStartTime());
@@ -149,28 +151,100 @@ public class AddMedFragment extends Fragment {
         saveMed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flagIfEdit)
+                boolean check = true;
+                if(inputNameMed.getText().toString().equals(""))
                 {
-                    localMed.setNameOfMed(inputNameMed.getText().toString());
-                    localMed.setTypeOfMed(spinType.getSelectedItem().toString());
-                    localMed.setQuantity(Integer.parseInt(inputQuantity.getText().toString()));
-                    localMed.setStartTime(inputStartTime.getText().toString());
-                    localMed.setFrequency(Integer.parseInt(inputFrequency.getText().toString()));
-                    localMed.setFrequencyUnit((spinFrequency.getSelectedItem().toString().equals("Hour(s)") ? true : false));
-                    localMed.setEndDate(inputEndDate.getText().toString());
+                    inputNameMed.setHint("*Required");
+                    inputNameMed.setHintTextColor(Color.RED);
+                    check = false;
                 }
-                else {
-                    localMed.setUseMedId(userId);
-                    localMed.setNameOfMed(inputNameMed.getText().toString());
-                    localMed.setTypeOfMed(spinType.getSelectedItem().toString());
-                    localMed.setQuantity(Integer.parseInt(inputQuantity.getText().toString()));
-                    localMed.setStartTime(inputStartTime.getText().toString());
-                    localMed.setFrequency(Integer.parseInt(inputFrequency.getText().toString()));
-                    localMed.setFrequencyUnit((spinFrequency.getSelectedItem().toString().equals("Hour(s)") ? true : false));
-                    localMed.setEndDate(inputEndDate.getText().toString());
+                if(inputUseFor.getText().toString().equals(""))
+                {
+                    inputUseFor.setHint("*Required");
+                    inputUseFor.setHintTextColor(Color.RED);
+                    check = false;
                 }
-                localDB.daointerface().addMedication(localMed);
-                getParentFragmentManager().popBackStackImmediate();
+
+                int quantity = 0;
+                try {
+                    quantity = Integer.parseInt(inputQuantity.getText().toString());
+                }
+                catch (NumberFormatException e)
+                {
+                    quantity = -2;
+                }
+
+                if(inputQuantity.getText().toString().equals("") || quantity == -2)
+                {
+                    if(quantity == -2)
+                    {
+                        inputQuantity.setHint("*Invalid Quantity");
+                    }
+                    else {
+                        inputQuantity.setHint("*Required");
+                    }
+                    inputQuantity.setHintTextColor(Color.RED);
+                    check = false;
+                }
+                if(inputStartTime.getText().toString().equals(""))
+                {
+                    inputStartTime.setHint("*Required");
+                    inputStartTime.setHintTextColor(Color.RED);
+                    check = false;
+                }
+
+                int frequency = 0;
+                try {
+                    frequency = Integer.parseInt(inputFrequency.getText().toString());
+                }
+                catch (NumberFormatException e)
+                {
+                    frequency = -2;
+                }
+
+                if(inputFrequency.getText().toString().equals("") || frequency == -2)
+                {
+                    if(frequency == -2)
+                    {
+                        inputFrequency.setHint("*Invalid Frequency");
+                    }
+                    else {
+                        inputFrequency.setHint("*Required");
+                    }
+                    inputFrequency.setHintTextColor(Color.RED);
+                    check = false;
+                }
+                if(inputEndDate.getText().toString().equals(""))
+                {
+                    inputEndDate.setHint("*Required");
+                    inputEndDate.setHintTextColor(Color.RED);
+                    check = false;
+                }
+
+                if(check) {
+                    if (flagIfEdit) {
+                        localMed.setNameOfMed(inputNameMed.getText().toString());
+                        localMed.setDescriptionOfMed(inputUseFor.getText().toString());
+                        localMed.setTypeOfMed(spinType.getSelectedItem().toString());
+                        localMed.setQuantity(Integer.parseInt(inputQuantity.getText().toString()));
+                        localMed.setStartTime(inputStartTime.getText().toString());
+                        localMed.setFrequency(Integer.parseInt(inputFrequency.getText().toString()));
+                        localMed.setFrequencyUnit((spinFrequency.getSelectedItem().toString().equals("Hour(s)") ? true : false));
+                        localMed.setEndDate(inputEndDate.getText().toString());
+                    } else {
+                        localMed.setUseMedId(userId);
+                        localMed.setNameOfMed(inputNameMed.getText().toString());
+                        localMed.setDescriptionOfMed(inputUseFor.getText().toString());
+                        localMed.setTypeOfMed(spinType.getSelectedItem().toString());
+                        localMed.setQuantity(Integer.parseInt(inputQuantity.getText().toString()));
+                        localMed.setStartTime(inputStartTime.getText().toString());
+                        localMed.setFrequency(Integer.parseInt(inputFrequency.getText().toString()));
+                        localMed.setFrequencyUnit((spinFrequency.getSelectedItem().toString().equals("Hour(s)") ? true : false));
+                        localMed.setEndDate(inputEndDate.getText().toString());
+                    }
+                    localDB.daointerface().addMedication(localMed);
+                    getParentFragmentManager().popBackStackImmediate();
+                }
             }
         });
 

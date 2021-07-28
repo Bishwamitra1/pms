@@ -19,19 +19,20 @@
 
             <ImageView
                 android:id="@+id/backToMed"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="6dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="5dp"
                 android:contentDescription="@string/medicine"
+                android:padding="4dp"
                 android:src="@drawable/ic_baseline_arrow_back_ios_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/editMed"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="12dp"
                 android:contentDescription="@string/medicine"
@@ -74,6 +75,38 @@
                 tools:layout_editor_absoluteX="50dp" />
 
             <TextView
+                android:id="@+id/titleUseFor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/titleUseFor"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/displayNameMed" />
+
+            <EditText
+                android:id="@+id/displayUseFor"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="center_vertical"
+                android:hint="@string/inputUseFor"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/titleUseFor"
+                tools:layout_editor_absoluteX="50dp" />
+
+            <TextView
                 android:id="@+id/titleType"
                 android:layout_width="160dp"
                 android:layout_height="40dp"
@@ -85,7 +118,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayNameMed" />
+                app:layout_constraintTop_toBottomOf="@+id/displayUseFor" />
 
             <Spinner
                 android:id="@+id/displayType"
@@ -98,7 +131,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayNameMed"></Spinner>
+                app:layout_constraintTop_toBottomOf="@+id/displayUseFor"></Spinner>
 
             <TextView
                 android:id="@+id/titleQuantity"
