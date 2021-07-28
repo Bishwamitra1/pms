@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".navbarui.medication.AddMedFragment">
+    tools:context=".navbarui.medication.MedViewFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,8 +19,8 @@
 
             <ImageView
                 android:id="@+id/backToMed"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="5dp"
                 android:contentDescription="@string/medicine"
@@ -36,42 +36,41 @@
                 android:layout_marginEnd="12dp"
                 android:contentDescription="@string/medicine"
                 android:padding="4dp"
-                android:src="@drawable/ic_baseline_done_24"
+                android:src="@drawable/ic_baseline_edit_24"
                 app:layout_constraintBottom_toBottomOf="@+id/backToMed"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/backToMed" />
 
             <TextView
                 android:id="@+id/titleMed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="@string/titleMed"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/backToMed" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editMed" />
 
-            <EditText
+            <TextView
                 android:id="@+id/displayNameMed"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
-                android:gravity="center_vertical"
-                android:hint="@string/nameOfMedication"
-                android:imeOptions="actionDone"
+                android:gravity="center_horizontal|center_vertical"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
-                android:inputType="text"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="@color/colorPrimaryDark"
-                android:textColorHint="@color/hint"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/titleMed"
-                tools:layout_editor_absoluteX="50dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editMed" />
 
             <TextView
                 android:id="@+id/titleType"
@@ -87,18 +86,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/displayNameMed" />
 
-            <Spinner
+            <TextView
                 android:id="@+id/displayType"
                 android:layout_width="240dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
-                android:entries="@array/typeOfMed"
-                android:gravity="center|center_horizontal|center_vertical"
+                android:gravity="center_horizontal|center_vertical"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayNameMed"></Spinner>
+                app:layout_constraintTop_toBottomOf="@+id/displayNameMed" />
 
             <TextView
                 android:id="@+id/titleQuantity"
@@ -114,27 +117,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/displayType" />
 
-            <EditText
+            <TextView
                 android:id="@+id/displayQuantity"
                 android:layout_width="240dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
                 android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/amountOfQuantity"
-                android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
-                android:inputType="text"
-                android:numeric="integer"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="@color/colorPrimaryDark"
-                android:textColorHint="@color/hint"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleType" />
+                app:layout_constraintTop_toBottomOf="@+id/displayType" />
 
             <TextView
                 android:id="@+id/titleStartTime"
@@ -153,18 +151,19 @@
             <TextView
                 android:id="@+id/displayStartTime"
                 android:layout_width="240dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
-                android:gravity="center"
-                android:hint="@string/inputStartTime"
+                android:gravity="center_horizontal|center_vertical"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayQuantity"></TextView>
+                app:layout_constraintTop_toBottomOf="@+id/displayQuantity" />
 
             <TextView
                 android:id="@+id/titleFrequency"
@@ -181,51 +180,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleStartTime" />
 
             <TextView
-                android:id="@+id/everyFrequency"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/every"
-                android:textColor="#676161"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/displayFrequency"
-                app:layout_constraintTop_toBottomOf="@+id/displayStartTime" />
-
-            <EditText
                 android:id="@+id/displayFrequency"
-                android:layout_width="50dp"
+                android:layout_width="240dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
                 android:gravity="center_horizontal|center_vertical"
-                android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
-                android:inputType="text"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/spinFrequency"
-                app:layout_constraintTop_toBottomOf="@+id/displayStartTime" />
-
-            <Spinner
-                android:id="@+id/spinFrequency"
-                android:layout_width="105dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@android:drawable/editbox_background"
-                android:entries="@array/Frequency"
-                android:gravity="center|center_horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayStartTime"></Spinner>
+                app:layout_constraintTop_toBottomOf="@+id/titleStartTime" />
 
             <TextView
                 android:id="@+id/titleEndDate"
@@ -244,18 +213,19 @@
             <TextView
                 android:id="@+id/displayEndDate"
                 android:layout_width="240dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
-                android:gravity="center"
-                android:hint="@string/inputEndDate"
+                android:gravity="center_horizontal|center_vertical"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayFrequency"></TextView>
+                app:layout_constraintTop_toBottomOf="@+id/titleFrequency" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -28,6 +29,7 @@ public class MedicineFragment extends Fragment implements MedicationAdapter.OnCl
     }
 
     private FloatingActionButton addMed_button;
+    private ImageView backToHealthFromMed;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,9 +39,17 @@ public class MedicineFragment extends Fragment implements MedicationAdapter.OnCl
         medications = localDB.daointerface().getMedicationsById(userId);
 
         addMed_button = v.findViewById(R.id.addMed_button);
+        backToHealthFromMed = v.findViewById(R.id.backToHealthFromMed);
         RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
 
         addMed_button.setOnClickListener(this);
+
+        backToHealthFromMed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager().popBackStackImmediate();
+            }
+        });
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -66,9 +76,10 @@ public class MedicineFragment extends Fragment implements MedicationAdapter.OnCl
     }
 
     public void onClickActionMethod(int position) {
+        Medication med = medications.get(position);
+
         final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        //Fragment noteview = new NoteViewFragment(medications.get(position));
-        ft.replace(R.id.nav_host_fragment, new AddMedFragment()).addToBackStack(null);
+        ft.replace(R.id.nav_host_fragment, new MedViewFragment(med)).addToBackStack(null);
         ft.commit();
     }
 

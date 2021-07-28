@@ -50,14 +50,14 @@ public class AddMedFragment extends Fragment {
         newMed = new Medication();
 
         View v = inflater.inflate(R.layout.fragment_add_med, container, false);
-        inputStartTime = v.findViewById(R.id.inputStartTime);
-        inputEndDate = v.findViewById(R.id.inputEndDate);
+        inputStartTime = v.findViewById(R.id.displayStartTime);
+        inputEndDate = v.findViewById(R.id.displayEndDate);
         backToMed = v.findViewById(R.id.backToMed);
-        saveMed = v.findViewById(R.id.saveMed);
-        inputNameMed = v.findViewById(R.id.inputNameMed);
-        inputQuantity = v.findViewById(R.id.inputQuantity);
-        inputFrequency = v.findViewById(R.id.inputFrequency);
-        spinType = v.findViewById(R.id.spinType);
+        saveMed = v.findViewById(R.id.editMed);
+        inputNameMed = v.findViewById(R.id.displayNameMed);
+        inputQuantity = v.findViewById(R.id.displayQuantity);
+        inputFrequency = v.findViewById(R.id.displayFrequency);
+        spinType = v.findViewById(R.id.displayType);
         spinFrequency = v.findViewById(R.id.spinFrequency);
 
         inputStartTime.setOnClickListener(new View.OnClickListener() {
