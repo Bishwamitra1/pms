@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -25,8 +25,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
     private UserAccount userAccount;
-    Button logout;
-    private TextView tvName, tvUsername, tvEmail, tvAge, tvGender, tvWeight, tvHeight, tvEmergEmail;
+    ImageView logOut;
+    private TextView tvName, tvUsername, tvEmail, tvAgeAndGender, tvWeightAndHeight, tvEmergEmail;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,34 +34,31 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         userAccount = localDB.daointerface().getUserById(userId);
+
+        logOut = v.findViewById(R.id.logOut);
         tvName = v.findViewById(R.id.tvName);
         tvUsername = v.findViewById(R.id.tvUsername);
         tvEmail = v.findViewById(R.id.tvEmail);
-        tvAge = v.findViewById(R.id.tvAge);
-        tvGender = v.findViewById(R.id.tvGender);
-        tvWeight = v.findViewById(R.id.tvWeight);
-        tvHeight = v.findViewById(R.id.tvHeight);
+        tvAgeAndGender = v.findViewById(R.id.tvAgeAndGender);
+        tvWeightAndHeight = v.findViewById(R.id.tvWeightAndHeight);
         tvEmergEmail = v.findViewById(R.id.tvEmergEmail);
 
         tvName.setText(userAccount.getFirstName()+" "+userAccount.getLastName());
         tvUsername.setText("@"+userAccount.getUsername());
         tvEmail.setText(userAccount.getEmail());
-        tvAge.setText(String.valueOf(userAccount.getAge()));
 
         String gender;
         if(userAccount.getGender()==0) { gender = "Male";   }
         else if(userAccount.getGender()==1) { gender = "Female"; }
         else if(userAccount.getGender()==2) { gender = "Other"; }
         else { gender = "Prefer not to say"; }
-        tvGender.setText(gender);
-        tvWeight.setText(String.valueOf(userAccount.getWeight()));
-        tvHeight.setText(String.valueOf(userAccount.getHeight()));
-        tvEmergEmail.setText(userAccount.getEmergEmail());
+        tvAgeAndGender.setText(String.valueOf(userAccount.getAge())+" - "+gender);
+
+        tvWeightAndHeight.setText(String.valueOf(userAccount.getWeight())+" - "+String.valueOf(userAccount.getHeight()));
+        tvEmergEmail.setText("- "+userAccount.getFriendEmail()+"\n- "+userAccount.getEmergEmail());
 
 
-        logout = v.findViewById(R.id.logout_button);
-
-        logout.setOnClickListener(this);
+        logOut.setOnClickListener(this);
 
 
         return v;
@@ -70,7 +67,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if(v == logout){
+        if(v == logOut){
             SaveSharedPreference.nullifyUserId(getActivity());
 
             Intent intent = new Intent(getActivity(), MainActivity.class);

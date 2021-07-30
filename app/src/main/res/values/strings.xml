@@ -36,8 +36,8 @@
     <string name="email">Email</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
-    <string name="trusted_family_or_friend_s_email_address">Trusted family or friend\'s email address</string>
-    <string name="emergency_contact_s_email_address">Emergency contact\'s email address</string>
+    <string name="trusted_family_or_friend_s_email_address">Trusted Family or Friend\'s Email Address</string>
+    <string name="emergency_contact_s_email_address">Emergency Contact\'s Email Address</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
     <string name="weight">Weight</string>
@@ -73,6 +73,9 @@
 
     <string name="today">TODAY</string>
     <string name="your_notes">Your Notes</string>
+
+    <string name="ageAndGender">Age - Gender</string>
+    <string name="weightAndHeight">Weight(lbs) - Height(inches)</string>
 
 
 </resources>
