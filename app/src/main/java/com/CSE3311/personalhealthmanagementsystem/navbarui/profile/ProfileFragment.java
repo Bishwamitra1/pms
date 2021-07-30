@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.CSE3311.personalhealthmanagementsystem.MainActivity;
 import com.CSE3311.personalhealthmanagementsystem.R;
@@ -25,7 +26,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
     private UserAccount userAccount;
-    ImageView logOut;
+    ImageView logOut,editProfile;
     private TextView tvName, tvUsername, tvEmail, tvAgeAndGender, tvWeightAndHeight, tvEmergEmail;
 
     @Override
@@ -36,6 +37,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         userAccount = localDB.daointerface().getUserById(userId);
 
         logOut = v.findViewById(R.id.logOut);
+        editProfile = v.findViewById(R.id.editProfile);
         tvName = v.findViewById(R.id.tvName);
         tvUsername = v.findViewById(R.id.tvUsername);
         tvEmail = v.findViewById(R.id.tvEmail);
@@ -59,6 +61,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 
         logOut.setOnClickListener(this);
+        editProfile.setOnClickListener(this);
 
 
         return v;
@@ -74,6 +77,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             requireActivity().finish();
+        }
+        else if(v == editProfile) {
+            final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment, new EditProfileFragment()).addToBackStack(null);
+            ft.commit();
         }
 
     }

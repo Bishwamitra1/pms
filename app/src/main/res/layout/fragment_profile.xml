@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="120dp"
         android:layout_weight="0.4"
         android:background="@drawable/profile_top"
         android:gravity="center_horizontal"
@@ -46,18 +46,20 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="10dp"
             android:text="@string/first_name"
-            android:textSize="36sp"
+            android:textColor="#070707"
+            android:textSize="42sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="4dp"
             android:text="@string/username"
-            android:textSize="18sp"
+            android:textColor="#070707"
+            android:textSize="24sp"
             android:textStyle="italic" />
 
     </LinearLayout>
@@ -82,8 +84,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/ic_email" />
 
@@ -96,13 +98,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/email"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/email" />
+                        android:text="@string/email"
+                        android:textColor="#070707"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -114,8 +119,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/ic_person" />
 
@@ -128,13 +133,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/ageAndGender"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvAgeAndGender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/ageAndGender" />
+                        android:text="@string/ageAndGender"
+                        android:textColor="#070707"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -146,8 +154,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/ic_weight_height" />
 
@@ -160,13 +168,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/weightAndHeight"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvWeightAndHeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/weightAndHeight" />
+                        android:text="@string/weightAndHeight"
+                        android:textColor="#070707"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -179,8 +190,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/ic_emergency" />
 
@@ -193,13 +204,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/emergency_contact_s_email_address"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvEmergEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/emergency_contact_s_email_address" />
+                        android:text="@string/emergency_contact_s_email_address"
+                        android:textColor="#070707"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
             </LinearLayout>
