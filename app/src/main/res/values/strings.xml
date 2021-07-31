@@ -76,6 +76,8 @@
 
     <string name="ageAndGender">Age - Gender</string>
     <string name="weightAndHeight">Weight(lbs) - Height(inches)</string>
+    <string name="symbolUserName">\@</string>
+    <string name="symbolAgeAndGender">-</string>
 
 
 </resources>

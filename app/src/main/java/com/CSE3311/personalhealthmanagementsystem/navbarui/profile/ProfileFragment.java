@@ -80,7 +80,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         }
         else if(v == editProfile) {
             final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-            ft.replace(R.id.nav_host_fragment, new EditProfileFragment()).addToBackStack(null);
+            ft.replace(R.id.nav_host_fragment, new EditProfileFragment(userAccount)).addToBackStack(null);
             ft.commit();
         }
 
