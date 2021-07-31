@@ -20,7 +20,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     private UserAccount userAccount;
     ImageView backToProfile, completeProfile;
-    private EditText etFirstName, etLastName, etUsername, etEmail, etAge, etWeight, etHeight, etEmergEmail;
+    private EditText etFirstName, etLastName, etUsername, etEmail, etAge, etWeight, etHeight, etFriendEmail, etOtherEmail;
     Spinner etGender;
     public EditProfileFragment() {
         // Required empty public constructor
@@ -47,7 +47,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         etGender = v.findViewById(R.id.etGender);
         etWeight = v.findViewById(R.id.etWeight);
         etHeight = v.findViewById(R.id.etHeight);
-        etEmergEmail = v.findViewById(R.id.etEmergEmail);
+        etFriendEmail = v.findViewById(R.id.etFriendEmail);
+        etOtherEmail = v.findViewById(R.id.etOtherEmail);
 
         etFirstName.setText(userAccount.getFirstName());
         etLastName.setText(userAccount.getLastName());
@@ -63,7 +64,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
         etWeight.setText(String.valueOf(userAccount.getWeight()));
         etHeight.setText(String.valueOf(userAccount.getHeight()));
-        etEmergEmail.setText("- "+userAccount.getFriendEmail()+"\n- "+userAccount.getEmergEmail());
+        etFriendEmail.setText(userAccount.getFriendEmail());
+        etOtherEmail.setText(userAccount.getEmergEmail());
 
         backToProfile.setOnClickListener(this);
         completeProfile.setOnClickListener(this);
@@ -82,6 +84,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
             userAccount.setGender(etGender.getSelectedItemPosition());
             userAccount.setWeight(Double.parseDouble(etWeight.getText().toString()));
             userAccount.setHeight(Integer.parseInt(etHeight.getText().toString()));
+            userAccount.setFriendEmail(etFriendEmail.getText().toString());
+            userAccount.setEmergEmail(etOtherEmail.getText().toString());
 
             localDB.daointerface().addUser(userAccount);
             getParentFragmentManager().popBackStackImmediate();

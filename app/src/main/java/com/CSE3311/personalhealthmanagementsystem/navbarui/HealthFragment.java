@@ -4,14 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.CSE3311.personalhealthmanagementsystem.R;
+import com.CSE3311.personalhealthmanagementsystem.UserAccount;
 import com.CSE3311.personalhealthmanagementsystem.navbarui.medication.MedicineFragment;
 import com.CSE3311.personalhealthmanagementsystem.navbarui.notes.NotesFragment;
+
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
+import static com.CSE3311.personalhealthmanagementsystem.MainActivity.localDB;
 
 public class HealthFragment extends Fragment implements View.OnClickListener {
 
@@ -20,11 +25,17 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
     }
 
     private CardView medication, vitalSigns, nutrition, notes, exercises, contact;
+    private TextView NameOfCustomer;
+    UserAccount userAccount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_health, container, false);
+        userAccount = localDB.daointerface().getUserById(userId);
+
+        NameOfCustomer = v.findViewById(R.id.NameOfCustomer);
+        NameOfCustomer.setText(userAccount.getFirstName()+"!");
 
         medication = v.findViewById(R.id.medButton);
         medication.setOnClickListener(this);//page made

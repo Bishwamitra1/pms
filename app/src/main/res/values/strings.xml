@@ -13,6 +13,7 @@
     <string name="sign_up_screen">Create a new account</string>
     <string name="check_password">input password again</string>
 
+    <string name="welcomeHealth">Welcome,</string>
     <string name="home">Home</string>
     <string name="health">Health</string>
     <string name="profile">Profile</string>
@@ -78,6 +79,8 @@
     <string name="weightAndHeight">Weight(lbs) - Height(inches)</string>
     <string name="symbolUserName">\@</string>
     <string name="symbolAgeAndGender">-</string>
+    <string name="friendAndFamily">- Friend/Family:</string>
+    <string name="other">- Other:</string>
 
 
 </resources>

@@ -27,7 +27,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private UserAccount userAccount;
     ImageView logOut,editProfile;
-    private TextView tvName, tvUsername, tvEmail, tvAgeAndGender, tvWeightAndHeight, tvEmergEmail;
+    private TextView tvName, tvUsername, tvEmail, tvAgeAndGender, tvWeightAndHeight, tvFriendEmail, tvOtherEmail;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +43,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tvEmail = v.findViewById(R.id.tvEmail);
         tvAgeAndGender = v.findViewById(R.id.tvAgeAndGender);
         tvWeightAndHeight = v.findViewById(R.id.tvWeightAndHeight);
-        tvEmergEmail = v.findViewById(R.id.tvEmergEmail);
+        tvFriendEmail = v.findViewById(R.id.tvFriendEmail);
+        tvOtherEmail = v.findViewById(R.id.tvOtherEmail);
 
         tvName.setText(userAccount.getFirstName()+" "+userAccount.getLastName());
         tvUsername.setText("@"+userAccount.getUsername());
@@ -57,7 +58,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tvAgeAndGender.setText(String.valueOf(userAccount.getAge())+" - "+gender);
 
         tvWeightAndHeight.setText(String.valueOf(userAccount.getWeight())+" - "+String.valueOf(userAccount.getHeight()));
-        tvEmergEmail.setText("- "+userAccount.getFriendEmail()+"\n- "+userAccount.getEmergEmail());
+        tvFriendEmail.setText(userAccount.getFriendEmail());
+        tvOtherEmail.setText(userAccount.getEmergEmail());
 
 
         logOut.setOnClickListener(this);
