@@ -1,7 +1,11 @@
 package com.CSE3311.personalhealthmanagementsystem.navbarui.medication;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -42,7 +47,7 @@ public class AddMedFragment extends Fragment {
     EditText inputNameMed, inputUseFor, inputQuantity, inputFrequency;
     Spinner spinType, spinFrequency;
 
-    int hour, minute;
+    int hour, minute, year, month, day;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -121,9 +126,9 @@ public class AddMedFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+                year = cal.get(Calendar.YEAR);
+                month = cal.get(Calendar.MONTH);
+                day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         getContext(), android.R.style.Theme_Holo_Light_Dialog_MinWidth,
@@ -222,7 +227,13 @@ public class AddMedFragment extends Fragment {
                 }
 
                 if(check) {
+//                    Calendar c = Calendar.getInstance();
+//                    c.set(Calendar.HOUR_OF_DAY,6);
+//                    c.set(Calendar.MINUTE,2);
+//                    c.set(Calendar.SECOND,0);
+
                     if (flagIfEdit) {
+                        //cancelAlarm();
                         localMed.setNameOfMed(inputNameMed.getText().toString());
                         localMed.setDescriptionOfMed(inputUseFor.getText().toString());
                         localMed.setTypeOfMed(spinType.getSelectedItem().toString());
@@ -241,13 +252,29 @@ public class AddMedFragment extends Fragment {
                         localMed.setFrequency(Integer.parseInt(inputFrequency.getText().toString()));
                         localMed.setFrequencyUnit((spinFrequency.getSelectedItem().toString().equals("Hour(s)") ? true : false));
                         localMed.setEndDate(inputEndDate.getText().toString());
+
+                        
                     }
+                    //startAlarm(c);
                     localDB.daointerface().addMedication(localMed);
                     getParentFragmentManager().popBackStackImmediate();
                 }
             }
         });
+        
+        
 
         return v;
     }
+
+    private void startAlarm(Calendar c) {
+        Intent intent = new Intent(getContext().getApplicationContext(),NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext().getApplicationContext(),1,intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
+        Toast.makeText(getContext(),c.get(Calendar.HOUR_OF_DAY)+" "+c.get(Calendar.MINUTE)+" ",Toast.LENGTH_SHORT).show();
+    }
+
+
 }
