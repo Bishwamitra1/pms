@@ -57,12 +57,14 @@ public class HomePageActivity extends AppCompatActivity {
                 .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        int editTextInput = 0;
-                        if(!(pinInput.getText().toString() == "")) {
+                        int editTextInput;
+                        try {
                             editTextInput = Integer.parseInt(pinInput.getText().toString());
+                            user.setPin(editTextInput);
+                            localDB.daointerface().addUser(user);
+                        } catch (Exception e){
+                            Log.e("set pin", "pin was not entered");
                         }
-                        user.setPin(editTextInput);
-                        localDB.daointerface().addUser(user);
                     }
                 })
                 .create();
@@ -82,9 +84,14 @@ public class HomePageActivity extends AppCompatActivity {
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        int editTextInput = Integer.parseInt(pinInput.getText().toString());
-                        if(curUser.getPin() == editTextInput){
-                            onCorrect.run();
+                        int editTextInput;
+                        try {
+                            editTextInput = Integer.parseInt(pinInput.getText().toString());
+                            if (curUser.getPin() == editTextInput) {
+                                onCorrect.run();
+                            }
+                        } catch (Exception e){
+                            Log.e("check pin","pin was not entered");
                         }
                     }
                 })
