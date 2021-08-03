@@ -45,9 +45,7 @@ public class NotesFragment extends Fragment implements RVAdapter.OnItemClicked, 
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
-                final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment, new HealthFragment()).addToBackStack(null);
-                ft.commit();
+                getParentFragmentManager().popBackStackImmediate();
             }
         };requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 

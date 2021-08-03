@@ -92,9 +92,7 @@ public class NoteViewFragment extends Fragment {
     // to moving fragments inside the navbar activity navhost fragment.
     // This returns to the NotesFragment
     public void postSelection() {
-        final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        ft.replace(R.id.nav_host_fragment, new NotesFragment()).addToBackStack(null);
-        ft.commit();
+        getParentFragmentManager().popBackStackImmediate();
     }
 
     // creates an alert dialog that prompts the user to save the note.
