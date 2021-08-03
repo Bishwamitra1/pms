@@ -57,7 +57,10 @@ public class HomePageActivity extends AppCompatActivity {
                 .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        int editTextInput = Integer.parseInt(pinInput.getText().toString());
+                        int editTextInput = 0;
+                        if(!(pinInput.getText().toString() == "")) {
+                            editTextInput = Integer.parseInt(pinInput.getText().toString());
+                        }
                         user.setPin(editTextInput);
                         localDB.daointerface().addUser(user);
                     }
