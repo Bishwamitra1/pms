@@ -2,12 +2,16 @@ package com.CSE3311.personalhealthmanagementsystem.navbarui.medication;
 
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +22,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
 import com.CSE3311.personalhealthmanagementsystem.Medication;
@@ -227,10 +232,6 @@ public class AddMedFragment extends Fragment {
                 }
 
                 if(check) {
-//                    Calendar c = Calendar.getInstance();
-//                    c.set(Calendar.HOUR_OF_DAY,6);
-//                    c.set(Calendar.MINUTE,2);
-//                    c.set(Calendar.SECOND,0);
 
                     if (flagIfEdit) {
                         //cancelAlarm();
@@ -255,7 +256,8 @@ public class AddMedFragment extends Fragment {
 
                         
                     }
-                    //startAlarm(c);
+                    createNotificationChannel();
+                    startAlarm();
                     localDB.daointerface().addMedication(localMed);
                     getParentFragmentManager().popBackStackImmediate();
                 }
@@ -266,15 +268,58 @@ public class AddMedFragment extends Fragment {
 
         return v;
     }
+    private void createNotificationChannel() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel("hello","hello", NotificationManager.IMPORTANCE_HIGH);
+            notificationChannel.setDescription("hello");
+            notificationChannel.setShowBadge(true);
+            NotificationManager notificationManager = getContext().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
 
-    private void startAlarm(Calendar c) {
+    private void startAlarm() {
         Intent intent = new Intent(getContext().getApplicationContext(),NotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext().getApplicationContext(),1,intent, 0);
 
         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
-        Toast.makeText(getContext(),c.get(Calendar.HOUR_OF_DAY)+" "+c.get(Calendar.MINUTE)+" ",Toast.LENGTH_SHORT).show();
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),1000*60*((localMed.isFrequencyUnit())?60*localMed.getFrequency():localMed.getFrequency()),pendingIntent);
+        //((localMed.isFrequencyUnit())?60*localMed.getFrequency():localMed.getFrequency())
+
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(),"hello")
+                .setSmallIcon(R.drawable.ic_baseline_account_circle_24)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_baseline_add_24))
+                .setContentTitle("Notification title")
+                .setContentText("This is content text.")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("This a text style!"))
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setContentIntent(pendingIntent)
+                .setChannelId("hello")
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getContext());
+        notificationManagerCompat.notify(1,builder.build());
     }
+
+//    public void startNotification() {
+//        Intent intent = new Intent(String.valueOf(getContext()));
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext().getApplicationContext(),1,intent, 0);
+//
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(),"hello")
+//                .setSmallIcon(R.drawable.ic_baseline_account_circle_24)
+//                .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_baseline_add_24))
+//                .setContentTitle("Notification title")
+//                .setContentText("This is content text.")
+//                .setStyle(new NotificationCompat.BigTextStyle().bigText("This a text style!"))
+//                .setPriority(NotificationCompat.PRIORITY_MAX)
+//                .setContentIntent(pendingIntent)
+//                .setChannelId("hello")
+//                .setAutoCancel(true);
+//
+//        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getContext());
+//        notificationManagerCompat.notify(1,builder.build());
+//    }
 
 
 }
