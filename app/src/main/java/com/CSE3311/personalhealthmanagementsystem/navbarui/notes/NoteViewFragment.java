@@ -1,6 +1,7 @@
 package com.CSE3311.personalhealthmanagementsystem.navbarui.notes;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,18 +10,23 @@ import android.os.Bundle;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 
-import com.CSE3311.personalhealthmanagementsystem.HomePageActivity;
 import com.CSE3311.personalhealthmanagementsystem.Note;
 import com.CSE3311.personalhealthmanagementsystem.R;
+
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localDB;
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.notesAdapter;
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.notesDataset;
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
 
 
 public class NoteViewFragment extends Fragment {
@@ -32,6 +38,9 @@ public class NoteViewFragment extends Fragment {
 
     EditText title;
     EditText content;
+    ImageView backButton;
+    ImageView checkButton;
+    ImageView deleteButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
@@ -78,6 +87,35 @@ public class NoteViewFragment extends Fragment {
 
         title = rootView.findViewById(R.id.note_title);
         content = rootView.findViewById(R.id.note_content);
+        backButton = rootView.findViewById(R.id.back_to_note_from_view);
+        checkButton = rootView.findViewById(R.id.confirm_note);
+        deleteButton = rootView.findViewById(R.id.delete_note);
+
+        checkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((InputMethodManager)getContext().getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                saveNote(getContext(), false);
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((InputMethodManager)getContext().getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                getActivity().onBackPressed();
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((InputMethodManager)getContext().getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                localDB.daointerface().deleteNote(curNote);
+                postSelection();
+            }
+        });
+
 
         //set the note contents if viewing previously saved note, otherwise displays the empty string
         title.setText(curNote.getNoteTitle());
@@ -92,6 +130,8 @@ public class NoteViewFragment extends Fragment {
     // to moving fragments inside the navbar activity navhost fragment.
     // This returns to the NotesFragment
     public void postSelection() {
+        notesDataset = localDB.daointerface().getNotesById(userId);
+        notesAdapter.notifyDataSetChanged();
         getParentFragmentManager().popBackStackImmediate();
     }
 
@@ -108,7 +148,7 @@ public class NoteViewFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 curNote.setNoteTitle(title.getText().toString());
                 curNote.setNoteContent(content.getText().toString());
-                HomePageActivity.localDB.daointerface().addNote(curNote);
+                localDB.daointerface().addNote(curNote);
                 dialog.dismiss();
                 if(exit)
                     postSelection();

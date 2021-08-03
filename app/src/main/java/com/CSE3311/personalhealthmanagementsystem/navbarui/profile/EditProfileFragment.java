@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -14,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import com.CSE3311.personalhealthmanagementsystem.R;
 import com.CSE3311.personalhealthmanagementsystem.UserAccount;
 
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.checkPin;
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.setPin;
 import static com.CSE3311.personalhealthmanagementsystem.MainActivity.localDB;
 
 public class EditProfileFragment extends Fragment implements View.OnClickListener {
@@ -21,6 +24,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     private UserAccount userAccount;
     ImageView backToProfile, completeProfile;
     private EditText etFirstName, etLastName, etUsername, etEmail, etAge, etWeight, etHeight, etFriendEmail, etOtherEmail;
+    Button changePin;
     Spinner etGender;
     public EditProfileFragment() {
         // Required empty public constructor
@@ -38,6 +42,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
         backToProfile = v.findViewById(R.id.backToProfile);
         completeProfile = v.findViewById(R.id.completeProfile);
+        changePin = v.findViewById(R.id.changePin);
 
         etFirstName = v.findViewById(R.id.etFirstName);
         etLastName = v.findViewById(R.id.etLastName);
@@ -69,12 +74,15 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
         backToProfile.setOnClickListener(this);
         completeProfile.setOnClickListener(this);
+        changePin.setOnClickListener(this);
         return v;
     }
 
     @Override
     public void onClick(View v) {
-        if(v==backToProfile) { getParentFragmentManager().popBackStackImmediate(); }
+        if(v==backToProfile) {
+            getParentFragmentManager().popBackStackImmediate();
+        }
         else if(v==completeProfile) {
             userAccount.setFirstName(etFirstName.getText().toString());
             userAccount.setLastName(etLastName.getText().toString());
@@ -89,6 +97,15 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
             localDB.daointerface().addUser(userAccount);
             getParentFragmentManager().popBackStackImmediate();
+        }
+        else if(v == changePin){
+            Runnable r = new Runnable() {
+                public void run() {
+                    setPin(userAccount, getContext());
+                    localDB.daointerface().addUser(userAccount);
+                }
+            };
+            checkPin(userAccount.getUserId(), getContext(), r);
         }
     }
 }

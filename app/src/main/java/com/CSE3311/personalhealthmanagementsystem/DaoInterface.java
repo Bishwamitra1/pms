@@ -20,6 +20,9 @@ public interface DaoInterface {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addNote(Note note);
 
+    @Delete
+    void deleteNote(Note note);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addMedication(Medication medication);
 

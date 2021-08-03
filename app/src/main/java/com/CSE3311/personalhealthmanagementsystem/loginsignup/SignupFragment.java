@@ -54,28 +54,33 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
             String username = editUsername.getText().toString();
             String password = editPassword.getText().toString();
             String passwordCheck = editPasswordCheck.getText().toString();
-            try {
-                (localDB.daointerface().getUser(username, password)).getUserId();
-                Toast curUserError = Toast.makeText(getContext(), "User already exists!", Toast.LENGTH_SHORT);
-                curUserError.show();
+            if (username.isEmpty() || password.isEmpty()){
+                Toast emptyError = Toast.makeText(getContext(), "please fill out all fields", Toast.LENGTH_SHORT);
+                emptyError.show();
             }
-            catch (Exception e) {
-                Log.d("sign up", "User Does not already exist");
-                if (!(password.equals(passwordCheck))) {
-                    Toast passwordError = Toast.makeText(getContext(), "passwords do not match, try again", Toast.LENGTH_SHORT);
-                    passwordError.show();
-                }
-                else {
-                    UserAccount user = new UserAccount();
-                    user.setUsername(username);
-                    user.setPassword(password);
+            else {
+                try {
+                    (localDB.daointerface().getUser(username, password)).getUserId();
+                    Toast curUserError = Toast.makeText(getContext(), "User already exists!", Toast.LENGTH_SHORT);
+                    curUserError.show();
+                } catch (Exception e) {
+                    Log.d("sign up", "User Does not already exist");
+                    if (!(password.equals(passwordCheck))) {
+                        Toast passwordError = Toast.makeText(getContext(), "passwords do not match, try again", Toast.LENGTH_SHORT);
+                        passwordError.show();
+                    }
+                    else {
+                        UserAccount user = new UserAccount();
+                        user.setUsername(username);
+                        user.setPassword(password);
 
-                    MainActivity.fragmentManager.beginTransaction().
-                            setCustomAnimations(R.anim.slide_in_right, 0, 0, R.anim.slide_out_right).
-                            replace(R.id.fragment_container, new CompleteSignupFragment(user)).
-                            addToBackStack(null).commit();
+                        MainActivity.fragmentManager.beginTransaction().
+                                setCustomAnimations(R.anim.slide_in_right, 0, 0, R.anim.slide_out_right).
+                                replace(R.id.fragment_container, new CompleteSignupFragment(user)).
+                                addToBackStack(null).commit();
 
 
+                    }
                 }
             }
         }

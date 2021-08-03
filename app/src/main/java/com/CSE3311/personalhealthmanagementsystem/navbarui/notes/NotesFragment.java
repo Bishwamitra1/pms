@@ -1,12 +1,12 @@
 package com.CSE3311.personalhealthmanagementsystem.navbarui.notes;
 
-import android.content.DialogInterface;
+import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 
 import androidx.activity.OnBackPressedCallback;
@@ -15,28 +15,25 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.checkPin;
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.notesDataset;
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.notesAdapter;
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localDB;
 
 import com.CSE3311.personalhealthmanagementsystem.Note;
 import com.CSE3311.personalhealthmanagementsystem.R;
-import com.CSE3311.personalhealthmanagementsystem.navbarui.HealthFragment;
-
-import java.util.List;
-
 
 public class NotesFragment extends Fragment implements RVAdapter.OnItemClicked, View.OnClickListener {
 
-    private List<Note> mDataset;
     Button addNewNote;
+    ImageView backButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //retrieve all notes made by the current user
-        mDataset = localDB.daointerface().getNotesById(userId);
+        notesDataset = localDB.daointerface().getNotesById(userId);
 
 
         // This creates a custom operation when the back button is pressed;
@@ -60,6 +57,10 @@ public class NotesFragment extends Fragment implements RVAdapter.OnItemClicked, 
         addNewNote = rootView.findViewById(R.id.new_note);
         addNewNote.setOnClickListener(this);
 
+        //assign back button
+        backButton = rootView.findViewById(R.id.back_to_health_from_note);
+        backButton.setOnClickListener(this);
+
         // find the recycler view by id
         RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
@@ -68,11 +69,11 @@ public class NotesFragment extends Fragment implements RVAdapter.OnItemClicked, 
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // provide a dataset to the recycler view through an adapter
-        RVAdapter mAdapter = new RVAdapter(mDataset);
-        mRecyclerView.setAdapter(mAdapter);
+        notesAdapter = new RVAdapter(notesDataset);
+        mRecyclerView.setAdapter(notesAdapter);
 
         // enable on click for recycler view items
-        mAdapter.setOnClick(this);
+        notesAdapter.setOnClick(this);
 
         return rootView;
 
@@ -83,25 +84,31 @@ public class NotesFragment extends Fragment implements RVAdapter.OnItemClicked, 
 
         // goto the NoteViewFragment when a note is clicked on
                 final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                Fragment noteview = new NoteViewFragment(mDataset.get(position));
-                ft.replace(R.id.nav_host_fragment, noteview).addToBackStack(null);
+                Fragment noteview = new NoteViewFragment(notesDataset.get(position));
+                ft.replace(R.id.nav_host_fragment, noteview).addToBackStack("notesFrag");
                 ft.commit();
+                notesAdapter.notifyDataSetChanged();
     }
 
 
     @Override
     public void onClick(View v) {
 
-        // create a new note for the user to modify
-        final Note newNote = new Note();
-        newNote.setAuthorId(userId); //The userID is very important! it is what allows the "findnotesbyID" function to work
-        newNote.setType("General");  // TODO: assign note types based on note(IE is it a recipe, a general note, a vital sign, etc
+        if(v == backButton){
+            getActivity().onBackPressed();
+        }
+        else {
+            // create a new note for the user to modify
+            final Note newNote = new Note();
+            newNote.setAuthorId(userId); //The userID is very important! it is what allows the "findnotesbyID" function to work
+            newNote.setType("General");  // TODO: assign note types based on note(IE is it a recipe, a general note, a vital sign, etc
 
-        // goto NoteViewFragment, passing in a new note
-        final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        Fragment noteview = new NoteViewFragment(newNote);
-        ft.replace(R.id.nav_host_fragment, noteview).addToBackStack(null);
-        ft.commit();
+            // goto NoteViewFragment, passing in a new note
+            final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            Fragment noteview = new NoteViewFragment(newNote);
+            ft.replace(R.id.nav_host_fragment, noteview).addToBackStack("notesFrag");
+            ft.commit();
+        }
     }
 
 

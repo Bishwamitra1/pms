@@ -66,14 +66,64 @@ public class CompleteSignupFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        Toast emptyError = Toast.makeText(getContext(), "please fill out all fields", Toast.LENGTH_SHORT);
+
+        if (fName.getText().toString().isEmpty()){
+            emptyError.show();
+            return;
+        }
         curUser.setFirstName(fName.getText().toString());
+
+
+        if (lName.getText().toString().isEmpty()){
+            emptyError.show();
+            return;
+        }
         curUser.setLastName(lName.getText().toString());
+
+
+        if (email.getText().toString().isEmpty()){
+            emptyError.show();
+            return;
+        }
         curUser.setEmail(email.getText().toString());
+
+
+        if (height.getText().toString().isEmpty()){
+            emptyError.show();
+            return;
+        }
         curUser.setHeight(Integer.parseInt(height.getText().toString()));
+
+
+        if (weight.getText().toString().isEmpty()){
+            emptyError.show();
+            return;
+        }
         curUser.setWeight(Double.parseDouble(weight.getText().toString()));
+
+
         curUser.setGender(gender.getSelectedItemPosition());
+
+
+        if (age.getText().toString().isEmpty()){
+            emptyError.show();
+            return;
+        }
         curUser.setAge(Integer.parseInt(age.getText().toString()));
+
+
+        if (eEmail.getText().toString().isEmpty()){
+            emptyError.show();
+            return;
+        }
         curUser.setEmergEmail(eEmail.getText().toString());
+
+
+        if (fEmail.getText().toString().isEmpty()){
+            emptyError.show();
+            return;
+        }
         curUser.setFriendEmail(fEmail.getText().toString());
 
         MainActivity.localDB.daointerface().addUser(curUser);
@@ -86,7 +136,5 @@ public class CompleteSignupFragment extends Fragment implements View.OnClickList
         SaveSharedPreference.setUserId(this.getContext(),userId);
         startActivity(intent);
         requireActivity().finish();
-
-
     }
 }

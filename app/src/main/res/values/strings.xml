@@ -82,5 +82,7 @@
     <string name="friendAndFamily">- Friend/Family:</string>
     <string name="other">- Other:</string>
 
+    <string name="change_pin">+ Change Pin</string>
+
 
 </resources>

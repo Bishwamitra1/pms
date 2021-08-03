@@ -9,6 +9,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.CSE3311.personalhealthmanagementsystem.navbarui.notes.RVAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,10 +20,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.room.Room;
 
+import java.util.List;
+
 public class HomePageActivity extends AppCompatActivity {
     public static PHMSDatabase localDB;
     public static int userId;
     public static FragmentManager fragmentManager;
+    public static RVAdapter notesAdapter;
+    public static List<Note> notesDataset;
 
 
     @Override
@@ -33,7 +38,7 @@ public class HomePageActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         if(doesUserHavePin(localDB.daointerface().getUserById(userId)))
-            setPin(localDB.daointerface().getUserById(userId));
+            setPin(localDB.daointerface().getUserById(userId), getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         BottomNavigationView navView = findViewById(R.id.navigationView);
@@ -47,10 +52,10 @@ public class HomePageActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
-    private void setPin(final UserAccount user) {
-        final EditText pinInput = new EditText(this);
+    public static void setPin(final UserAccount user, Context context) {
+        final EditText pinInput = new EditText(context);
         pinInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-        AlertDialog dialog = new AlertDialog.Builder(this)
+        AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle("Set Pin")
                 .setMessage("Please set your pin")
                 .setView(pinInput)
