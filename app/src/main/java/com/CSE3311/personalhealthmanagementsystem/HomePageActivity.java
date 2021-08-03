@@ -1,6 +1,7 @@
 package com.CSE3311.personalhealthmanagementsystem;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -59,6 +60,29 @@ public class HomePageActivity extends AppCompatActivity {
                         int editTextInput = Integer.parseInt(pinInput.getText().toString());
                         user.setPin(editTextInput);
                         localDB.daointerface().addUser(user);
+                    }
+                })
+                .create();
+        dialog.show();
+    }
+
+    public static void checkPin(final int userId, Context context, final Runnable onCorrect){
+
+        final EditText pinInput = new EditText(context);
+        final UserAccount curUser = localDB.daointerface().getUserById(userId);
+
+        pinInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setTitle("Authentication")
+                .setMessage("Please type your pin")
+                .setView(pinInput)
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        int editTextInput = Integer.parseInt(pinInput.getText().toString());
+                        if(curUser.getPin() == editTextInput){
+                            onCorrect.run();
+                        }
                     }
                 })
                 .create();

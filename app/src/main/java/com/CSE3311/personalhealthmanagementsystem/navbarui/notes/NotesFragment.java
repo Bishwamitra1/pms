@@ -1,5 +1,6 @@
 package com.CSE3311.personalhealthmanagementsystem.navbarui.notes;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.checkPin;
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.localDB;
 
@@ -79,14 +81,15 @@ public class NotesFragment extends Fragment implements RVAdapter.OnItemClicked, 
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(final int position) {
 
         // goto the NoteViewFragment when a note is clicked on
-        final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        Fragment noteview = new NoteViewFragment(mDataset.get(position));
-        ft.replace(R.id.nav_host_fragment, noteview).addToBackStack(null);
-        ft.commit();
+                final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                Fragment noteview = new NoteViewFragment(mDataset.get(position));
+                ft.replace(R.id.nav_host_fragment, noteview).addToBackStack(null);
+                ft.commit();
     }
+
 
     @Override
     public void onClick(View v) {
