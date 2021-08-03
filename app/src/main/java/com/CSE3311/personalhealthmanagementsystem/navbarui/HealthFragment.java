@@ -13,8 +13,10 @@ import androidx.fragment.app.FragmentTransaction;
 import com.CSE3311.personalhealthmanagementsystem.R;
 import com.CSE3311.personalhealthmanagementsystem.UserAccount;
 import com.CSE3311.personalhealthmanagementsystem.navbarui.medication.MedicineFragment;
+import com.CSE3311.personalhealthmanagementsystem.navbarui.notes.NoteViewFragment;
 import com.CSE3311.personalhealthmanagementsystem.navbarui.notes.NotesFragment;
 
+import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.checkPin;
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.userId;
 import static com.CSE3311.personalhealthmanagementsystem.MainActivity.localDB;
 
@@ -63,9 +65,14 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             //copy and paste any case to add other fragments
             case R.id.notesButton:
-                final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment, new NotesFragment()).addToBackStack(null);
-                ft.commit();
+                Runnable r = new Runnable() {
+                    public void run() {
+                        final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                        ft.replace(R.id.nav_host_fragment, new NotesFragment()).addToBackStack(null);
+                        ft.commit();
+                    }
+                };
+                checkPin(userId, getContext(), r);
                 break;
             case R.id.medButton:
                 final FragmentTransaction ft0 = getParentFragmentManager().beginTransaction();
