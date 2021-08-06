@@ -53,36 +53,47 @@
     <string name="titleUseFor">Description</string>
     <string name="inputUseFor">Example: pain, allergy,...</string>
     <string name="titleType">Medicine Type</string>
-    <string-array name="typeOfMed">
-        <item>Capsule(s)</item>
-        <item>Liquid</item>
-        <item>Tablet(s)</item>
-    </string-array>
     <string name="titleQuantity">Quantity</string>
     <string name="amountOfQuantity">Amount Per Dose</string>
     <string name="titleStartTime">Start Time</string>
     <string name="inputStartTime">Select Time</string>
     <string name="titleFrequency">Frequency</string>
-    <string-array name="Frequency">
-        <item>Hour(s)</item>
-        <item>Minute(s)</item>
-    </string-array>
     <string name="every">Every</string>
     <string name="titleEndDate">End Date</string>
     <string name="inputEndDate">Select Date</string>
-
-
     <string name="today">TODAY</string>
     <string name="your_notes">Your Notes</string>
 
+    <string name="titleExer">Exercise Name</string>
+    <string name="nameOfExercise">Enter Name of Exercise</string>
+    <string name="titleCaloriesBurned">Calories Burned</string>
+    <string name="heartRate">Heart Rate</string>
+    <string name="lengthOfExer">Exercise Length</string>
+
+    <string name="titleFood">Favorite Food</string>
+    <string name="nameOfFood">Enter Name of Food</string>
+    <string name="titleCalorieCount">Calorie Count</string>
+    <string name="titleMicroCount">Micro Nutrients</string>
+
+
     <string name="ageAndGender">Age - Gender</string>
     <string name="weightAndHeight">Weight(lbs) - Height(inches)</string>
+
     <string name="symbolUserName">\@</string>
     <string name="symbolAgeAndGender">-</string>
     <string name="friendAndFamily">- Friend/Family:</string>
     <string name="other">- Other:</string>
-
     <string name="change_pin">+ Change Pin</string>
+    <string-array name="typeOfMed">
+        <item>Capsule(s)</item>
+        <item>Liquid</item>
+        <item>Tablet(s)</item>
+    </string-array>
+
+    <string-array name="Frequency">
+        <item>Hour(s)</item>
+        <item>Minute(s)</item>
+    </string-array>
 
 
 </resources>

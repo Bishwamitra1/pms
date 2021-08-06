@@ -20,6 +20,12 @@ public interface DaoInterface {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addNote(Note note);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void addExercise(Exercise exercise);
+
+    @Insert(onConflict =  OnConflictStrategy.REPLACE)
+    void addFood(Food food);
+
     @Delete
     void deleteNote(Note note);
 
@@ -38,8 +44,20 @@ public interface DaoInterface {
     @Query("SELECT * FROM medication WHERE useMedId= :userId")
     List<Medication> getMedicationsById(int userId);
 
+    @Query("SELECT * FROM exercise WHERE useExerId= :userId")
+    List<Exercise> getExercisesById(int userId);
+
+    @Query("SELECT * FROM food WHERE useFoodId= :userId")
+    List<Food> getFoodsById(int userId);
+
     @Delete
     void deleteMedication(Medication medication);
+
+    @Delete
+    void deleteExercise( Exercise exercise);
+
+    @Delete
+    void deleteFood(Food food);
 
     //USE THIS METHOD WITH EXTREME RISK!!!!1!!!!1
     @Query("DELETE FROM user_accounts")

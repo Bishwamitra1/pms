@@ -1,24 +1,25 @@
-package com.CSE3311.personalhealthmanagementsystem.navbarui.medication;
+package com.CSE3311.personalhealthmanagementsystem.navbarui.exercise;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.CSE3311.personalhealthmanagementsystem.Exercise;
 import com.CSE3311.personalhealthmanagementsystem.Medication;
 import com.CSE3311.personalhealthmanagementsystem.R;
+import com.CSE3311.personalhealthmanagementsystem.navbarui.medication.MedicationAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.MedicationHolder> {
-
+public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseHolder> {
     private OnClickAction onClickAction;
-    List<Medication> medications = new ArrayList<>();
+    List<Exercise> exercises = new ArrayList<>();
 
 
     public interface OnClickAction {
@@ -26,18 +27,18 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
     }
 
     @Override
-    public MedicationHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ExerciseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.medicine_item,parent,false);
-        return new MedicationHolder(itemView);
+        return new ExerciseHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MedicationHolder holder, final int position) {
-        Medication currentMed = medications.get(position);
+    public void onBindViewHolder(ExerciseHolder holder, final int position) {
+        Exercise currentExer = exercises.get(position);
 
-        holder.titleMedItem.setText(currentMed.getNameOfMed());
-        holder.titleDescriptionItem.setText("Take "+currentMed.getQuantity()+" "+currentMed.getTypeOfMed()+" every "+currentMed.getFrequency()+((currentMed.isFrequencyUnit())?" Hour(s)":" Minute(s)")+" for "+currentMed.getDescriptionOfMed());
+        holder.titleMedItem.setText(currentExer.getNameOfExercise());
+        holder.titleDescriptionItem.setText(currentExer.getDescriptionOfExercise());
 
         holder.getmCardView().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,14 +50,14 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
 
     @Override
     public int getItemCount() {
-        return medications.size();
+        return exercises.size();
     }
 
-    public static class  MedicationHolder extends RecyclerView.ViewHolder {
+    public static class ExerciseHolder extends RecyclerView.ViewHolder {
         private TextView titleMedItem, titleDescriptionItem;
         private CardView mCardView;
 
-        public MedicationHolder(View itemView) {
+        public ExerciseHolder(View itemView) {
             super(itemView);
             mCardView = itemView.findViewById(R.id.cardViewMed);
             titleMedItem = itemView.findViewById(R.id.titleMedItem);
@@ -69,9 +70,9 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
         }
     }
 
-    public MedicationAdapter(List<Medication> Mmedications)
+    public ExerciseAdapter(List<Exercise> exercises)
     {
-        medications = Mmedications;
+        this.exercises = exercises;
     }
 
     public void setOnClickAction(OnClickAction onClickAction) { this.onClickAction = onClickAction; }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".navbarui.medication.MedViewFragment">
+    tools:context=".navbarui.exercise.AddExerFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,241 +18,196 @@
             android:animateLayoutChanges="true">
 
             <ImageView
-                android:id="@+id/backToMed"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="6dp"
+                android:id="@+id/backToExer"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="5dp"
                 android:contentDescription="@string/medicine"
+                android:padding="4dp"
                 android:src="@drawable/ic_baseline_arrow_back_ios_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/editMed"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:contentDescription="@string/medicine"
-                android:padding="4dp"
-                android:src="@drawable/ic_baseline_edit_24"
-                app:layout_constraintBottom_toBottomOf="@+id/backToMed"
-                app:layout_constraintEnd_toStartOf="@id/deleteMed"
-                app:layout_constraintTop_toTopOf="@+id/backToMed" />
-
-            <ImageView
-                android:id="@+id/deleteMed"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:id="@+id/editExer"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="12dp"
                 android:contentDescription="@string/medicine"
                 android:padding="4dp"
-                android:src="@drawable/ic_baseline_delete_24"
-                app:layout_constraintBottom_toBottomOf="@+id/backToMed"
+                android:src="@drawable/ic_baseline_done_24"
+                app:layout_constraintBottom_toBottomOf="@+id/backToExer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/backToMed" />
 
             <TextView
-                android:id="@+id/titleMed"
-                android:layout_width="160dp"
-                android:layout_height="40dp"
+                android:id="@+id/titleExer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/titleMed"
+                android:text="@string/titleExer"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editMed" />
+                app:layout_constraintTop_toBottomOf="@+id/backToExer" />
 
-            <TextView
-                android:id="@+id/displayNameMed"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+            <EditText
+                android:id="@+id/displayNameExer"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:background="@android:drawable/editbox_background"
-                android:gravity="center_horizontal|center_vertical"
+                android:gravity="center_vertical"
+                android:hint="@string/nameOfExercise"
+                android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
+                android:inputType="text"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editMed" />
+                app:layout_constraintTop_toBottomOf="@+id/titleExer"
+                tools:layout_editor_absoluteX="50dp" />
 
             <TextView
                 android:id="@+id/titleUseFor"
-                android:layout_width="160dp"
-                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="@string/titleUseFor"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleMed" />
+                app:layout_constraintTop_toBottomOf="@+id/displayNameExer" />
 
-            <TextView
-                android:id="@+id/displayUseFor"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@android:drawable/editbox_background"
-                android:gravity="center_horizontal|center_vertical"
-                android:importantForAutofill="no"
-                android:includeFontPadding="false"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayNameMed" />
-
-            <TextView
-                android:id="@+id/titleType"
-                android:layout_width="160dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/titleType"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleUseFor" />
-
-            <TextView
-                android:id="@+id/displayType"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@android:drawable/editbox_background"
-                android:gravity="center_horizontal|center_vertical"
-                android:importantForAutofill="no"
-                android:includeFontPadding="false"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayUseFor" />
-
-            <TextView
-                android:id="@+id/titleQuantity"
-                android:layout_width="160dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/titleQuantity"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayType" />
-
-            <TextView
-                android:id="@+id/displayQuantity"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@android:drawable/editbox_background"
-                android:gravity="center_horizontal|center_vertical"
-                android:importantForAutofill="no"
-                android:includeFontPadding="false"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayType" />
-
-            <TextView
-                android:id="@+id/titleStartTime"
-                android:layout_width="160dp"
+            <EditText
+                android:id="@+id/displayDescriptionOfExer"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/titleStartTime"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayQuantity" />
-
-            <TextView
-                android:id="@+id/displayStartTime"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
-                android:gravity="center_horizontal|center_vertical"
+                android:gravity="center_vertical"
+                android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
+                android:inputType="text"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/titleUseFor"
+                tools:layout_editor_absoluteX="50dp" />
 
             <TextView
-                android:id="@+id/titleFrequency"
+                android:id="@+id/titleCaloriesBurned"
                 android:layout_width="160dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/titleFrequency"
+                android:text="@string/titleCaloriesBurned"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleStartTime" />
+                app:layout_constraintTop_toBottomOf="@+id/displayDescriptionOfExer" />
 
-            <TextView
-                android:id="@+id/displayFrequency"
+            <EditText
+                android:id="@+id/displayCaloriesBurned"
                 android:layout_width="240dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background"
                 android:gravity="center_horizontal|center_vertical"
+                android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
+                android:inputType="text"
+                android:numeric="integer"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleStartTime" />
+                app:layout_constraintTop_toBottomOf="@+id/displayDescriptionOfExer" />
 
             <TextView
-                android:id="@+id/titleEndDate"
+                android:id="@+id/titleHeartRate"
                 android:layout_width="160dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/titleEndDate"
+                android:text="@string/heartRate"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleFrequency" />
+                app:layout_constraintTop_toBottomOf="@+id/titleCaloriesBurned" />
+
+            <EditText
+                android:id="@+id/displayHeartRate"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="center_horizontal|center_vertical"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:numeric="integer"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/displayCaloriesBurned" />
+
+            <TextView
+                android:id="@+id/titleLengthOfExer"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/lengthOfExer"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleHeartRate" />
+
+            <EditText
+                android:id="@+id/displayLengthOfExer"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="center_horizontal|center_vertical"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/displayHeartRate" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

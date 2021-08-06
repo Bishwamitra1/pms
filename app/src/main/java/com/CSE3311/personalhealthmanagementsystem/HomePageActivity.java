@@ -34,11 +34,11 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Intent mIntent = getIntent();
         userId = mIntent.getIntExtra("userID", 0);
-        localDB = Room.databaseBuilder(getApplicationContext(),PHMSDatabase.class, "userDB").allowMainThreadQueries().build();
+        localDB = Room.databaseBuilder(HomePageActivity.this,PHMSDatabase.class, "userDB").allowMainThreadQueries().build();
         fragmentManager = getSupportFragmentManager();
 
         if(doesUserHavePin(localDB.daointerface().getUserById(userId)))
-            setPin(localDB.daointerface().getUserById(userId), getApplicationContext());
+            setPin(localDB.daointerface().getUserById(userId), HomePageActivity.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         BottomNavigationView navView = findViewById(R.id.navigationView);

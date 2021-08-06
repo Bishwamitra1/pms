@@ -12,8 +12,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.CSE3311.personalhealthmanagementsystem.R;
 import com.CSE3311.personalhealthmanagementsystem.UserAccount;
+import com.CSE3311.personalhealthmanagementsystem.navbarui.exercise.ExercisesFragment;
+import com.CSE3311.personalhealthmanagementsystem.navbarui.food.FoodFragment;
 import com.CSE3311.personalhealthmanagementsystem.navbarui.medication.MedicineFragment;
-import com.CSE3311.personalhealthmanagementsystem.navbarui.notes.NoteViewFragment;
 import com.CSE3311.personalhealthmanagementsystem.navbarui.notes.NotesFragment;
 
 import static com.CSE3311.personalhealthmanagementsystem.HomePageActivity.checkPin;
@@ -26,7 +27,7 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-    private CardView medication, vitalSigns, nutrition, notes, exercises, contact;
+    private CardView medication, vitalSigns, nutrition, notes, exercises, contact, food;
     private TextView NameOfCustomer;
     UserAccount userAccount;
 
@@ -56,6 +57,9 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
 
         contact = v.findViewById(R.id.contactButton);
         contact.setOnClickListener(this);//page made
+
+        food = v.findViewById(R.id.foodButton);
+        food.setOnClickListener(this);
 
         return v;
     }
@@ -98,6 +102,11 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
                 final FragmentTransaction ft4 = getParentFragmentManager().beginTransaction();
                 ft4.replace(R.id.nav_host_fragment, new ContactFragment()).addToBackStack(null);
                 ft4.commit();
+                break;
+            case R.id.foodButton:
+                final FragmentTransaction ft5 = getParentFragmentManager().beginTransaction();
+                ft5.replace(R.id.nav_host_fragment, new FoodFragment()).addToBackStack(null);
+                ft5.commit();
                 break;
 
         }
